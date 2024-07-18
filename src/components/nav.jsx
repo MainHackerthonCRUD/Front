@@ -14,6 +14,9 @@ const NavWapper = styled.div`
     flex-direction: row;
     gap: 10px;
     width: 100%;
-    background-color: #e3e3e3;
+    background-color: #ffffff;
     margin-bottom: 30px;
+    a {
+      color: #FECD55;
+    }
 `;
