@@ -11,39 +11,49 @@ export default function LoginPage() {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleUsernameChange = (e) => {
     setUserName(e.target.value);
   }
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   }
-  const loginOK = async () => {
+  const loginOK = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErrorMessage('');
 
-    const user = {id: username, pw: password}
+    const user = {username: username, email: '', password: password}
     try {
-      const response = await api.post("/dj/login", user);
-      console(response.data);
+      const response = await api.post("/dj/login/", user);
+      console.log(response.data);
       setIsLogined(true); //로그인 상태관리
       sessionStorage.setItem("access", response.data.access);
-      sessionStorage.setItem("nickname", response.data.user.nickname);
+      sessionStorage.setItem("nickname", response.data.user.username);
       alert('로그인 되었습니다.')
       navigate('/');
       return response.data;
     } catch (error) {
       console.log(error);
-      alert('로그인 실패!')
-      return error;
+      setErrorMessage(error.response?.data?.message || '로그인에 실패했습니다. 다시 시도해 주세요.'+error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
     return (
       <LoginDiv>
       <h2>로그인</h2>
-      <div>
-      <InputBox type="id" name="id" placeholder="아이디" value={username} onChange={handleUsernameChange}/>
-      <InputBox type="password" name="password" placeholder="비밀번호" value={password} onChange={handlePasswordChange}/>
-      </div>
-      <button onClick={loginOK}>확인</button>
+      <form onSubmit={loginOK}>
+        <InputBox id="username" type="text" name="id" placeholder="아이디" value={username} onChange={handleUsernameChange} autoComplete="username"/>
+        <InputBox id="password" type="password" name="password" placeholder="비밀번호" value={password} onChange={handlePasswordChange} autoComplete="current-password"/>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? '로그인 중...' : '확인'}
+        </button>
+      </form>
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <a href="/signup">회원가입</a>
       </LoginDiv>
     );
@@ -70,7 +80,7 @@ export default function LoginPage() {
       padding: 0 10px;
     }
 
-    div {
+    form {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -83,11 +93,16 @@ export default function LoginPage() {
     }
   `;
 
-  const InputBox = styled.input`
+  export const InputBox = styled.input`
     height: 35px;
     width: 260px;
     border-style: none;
     border-radius: 10px;
     padding-left: 20px;
-  `
+  `;
+
+  const ErrorMessage = styled.p`
+    color: red;
+    font-size: 14px;
+  `;
 
