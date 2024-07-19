@@ -1,23 +1,23 @@
 import styled from 'styled-components';
-import useStore from '../store';
+import useAuthStore from '../store';
 import { useNavigate } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 export default function Nav() {
-  
-  const {isLogined, setIsLogined} = useStore(state => state);
+  const { logout, isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
-  
-  let user = sessionStorage.getItem('nickname');
+  const [cookies, setCookie, removeCookie] = useCookies(['access', 'nickname']);
+  let user = cookies.nickname;
 
   const handleLogout = () => {
-    setIsLogined(false);
-    sessionStorage.removeItem('access');
-    sessionStorage.removeItem('nickname');
+    logout(removeCookie);
+    removeCookie('access', { path: '/' });
+    removeCookie('nickname', { path: '/' });
     alert('로그아웃 되었습니다.')
     navigate("/");
   }
 
-  if (!isLogined) {
+  if (!isAuthenticated) {
     return (
       <NavWapper>
           <a href="/">Home</a>
