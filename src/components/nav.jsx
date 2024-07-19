@@ -7,6 +7,8 @@ export default function Nav() {
   const {isLogined, setIsLogined} = useStore(state => state);
   const navigate = useNavigate();
   
+  let user = sessionStorage.getItem('nickname');
+
   const handleLogout = () => {
     setIsLogined(false);
     sessionStorage.removeItem('access');
@@ -28,6 +30,7 @@ export default function Nav() {
       <NavWapper>
           <a href="/">Home</a>
           <a onClick={handleLogout}>logout</a>
+          <p>hello, {user}</p>
       </NavWapper>
     );
   }
