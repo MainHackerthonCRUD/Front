@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import SearchBox from "./mainsearch";
 
 export default function HomePage() {
 
@@ -8,6 +8,7 @@ export default function HomePage() {
       <p>HOME: JSON 랜더링</p>
       <br/>
       <Logo> 마다닥! </Logo>
+      <SearchBox/>
       </>
     );
   }  
