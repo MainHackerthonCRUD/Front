@@ -1,18 +1,19 @@
 import styled from "styled-components";
 import api from "../api";
-import useStore from '../store';
+import useAuthStore from "../store";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 
 export default function LoginPage() {
-
   const navigate = useNavigate();
-  const {isLogined, setIsLogined} = useStore(state => state);
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
-
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  const { login } = useAuthStore();
+  const [cookies, setCookie] = useCookies(['access', 'nickname']);
 
   const handleUsernameChange = (e) => {
     setUserName(e.target.value);
@@ -29,15 +30,15 @@ export default function LoginPage() {
     try {
       const response = await api.post("/dj/login/", user);
       console.log(response.data);
-      setIsLogined(true); //로그인 상태관리
-      sessionStorage.setItem("access", response.data.access);
-      sessionStorage.setItem("nickname", response.data.user.username);
+      login(setCookie);
+      setCookie('access', response.data.access, { path: '/' }); // 쿠키에 access 토큰 저장
+      setCookie('nickname', response.data.user.username, { path: '/' }); // 쿠키에 사용자 이름 저장
       alert('로그인 되었습니다.')
       navigate('/');
       return response.data;
     } catch (error) {
       console.log(error);
-      setErrorMessage(error.response?.data?.message || '로그인에 실패했습니다. 다시 시도해 주세요.'+error);
+      setErrorMessage(error.response?.data?.message || '로그인에 실패했습니다. 다시 시도해 주세요.');
     } finally {
       setIsLoading(false);
     }
