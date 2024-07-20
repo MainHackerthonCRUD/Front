@@ -1,16 +1,24 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { useCookies } from "react-cookie";
 
-const useStore = create(
+const useAuthStore = create(
     persist(
-        (set, get) => ({
-            isLogined: false,
-            setIsLogined: (value) => set({isLogined: value})
-        }),
-        {
-            name: 'login state',
-        }
+      (set) => ({
+        isAuthenticated: false,
+        login: (setCookie) => {
+          setCookie('isAuthenticated', true, { path: '/' });
+          set({ isAuthenticated: true });
+        },
+        logout: (removeCookie) => {
+          removeCookie('isAuthenticated', { path: '/' });
+          set({ isAuthenticated: false });
+        },
+      }),
+      {
+        name: 'auth-info',
+      }
     )
-);
+  );
 
-export default useStore;
+export default useAuthStore;
