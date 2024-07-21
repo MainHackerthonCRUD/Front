@@ -21,18 +21,51 @@ export default function SearchBox(){
 
 
     return(
-        <>
-        <input type = "search"
+        <SearchContainer>
+        <Searchinput type = "search"
         placeholder = "산부인과 후기 검색하기"
         className = 'SearchInput'
         ref = {inputRef}
         />
 
-        <button
+        <Searchbutton
         id = 'search-Btn'
         onClick={handleSearch}>
          검색
-        </button>
-        </>
+        </Searchbutton>
+        </SearchContainer>
     )
 } 
+
+
+const SearchContainer = styled.div`
+    display: flex;
+    //flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+`
+const Searchinput = styled.input`
+    width: 600px;
+    height: 80px;
+    margin-top: 50px; 
+    border: 2px solid #FECD55;
+    border-radius: 20px;
+    font-size: 20px;
+    padding-left: 20px;
+    outline: none;
+    `
+
+const Searchbutton = styled.button`
+    width: 100px;
+    height: 80px;
+    margin-top:50px;
+    border-radius: 20px;
+    border: 2px solid #FECD55;
+    background-color: #FECD55;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    
+    `
