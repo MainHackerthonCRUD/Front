@@ -2,7 +2,7 @@ name: git push into another repo to deploy to vercel
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 jobs:
   build:
@@ -25,6 +25,6 @@ jobs:
           destination-repository-name: madadoc
           user-email: EMAIL
           commit-message: ${{ github.event.commits[0].message }}
-          target-branch: master
+          target-branch: main
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
