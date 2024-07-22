@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -59,22 +59,53 @@ export default function WriteNewReview() {
 
   return (
     <div>
-        <h2>리뷰작성</h2>
         <ReviewBoxWrapper>
+        <h2>리뷰작성</h2>
         <InfoForm onSubmit={WriteReview}>
             <InputInfo placeholder="병원명" onChange={handleHospitalnameChange}></InputInfo>
-            <InputInfo placeholder="지역(구)" onChange={handleRegionChange}></InputInfo>
+            <InputInfo list="regions" placeholder="지역(구)" onChange={handleRegionChange}/>
+            <datalist id="regions">
+                    <option value="종로구"></option>
+                    <option value="중구"></option>
+                    <option value="용산구"></option>
+                    <option value="성동구"></option>
+                    <option value="광진구"></option>
+                    <option value="동대문구"></option>
+                    <option value="중랑구"></option>
+                    <option value="성북구"></option>
+                    <option value="강북구"></option>
+                    <option value="도봉구"></option>
+                    <option value="노원구"></option>
+                    <option value="은평구"></option>
+                    <option value="서대문구"></option>
+                    <option value="마포구"></option>
+                    <option value="양천구"></option>
+                    <option value="강서구"></option>
+                    <option value="구로구"></option>
+                    <option value="금천구"></option>
+                    <option value="영등포구"></option>
+                    <option value="동작구"></option>
+                    <option value="관악구"></option>
+                    <option value="서초구"></option>
+                    <option value="강남구"></option>
+                    <option value="송파구"></option>
+                    <option value="강동구"></option>
+                </datalist> 
+            <ObContainer>
             <h4>분만여부</h4>
+            <ObInnerContainer>
             <div>
-                <input type="radio" id="yes" name="ob" value="O" checked onChange={handleObChange}/>
-                <label htmlFor="yes">분만O</label>
-            </div>
-            <div>
-                <input type="radio" id="no" name="ob" value="X" onChange={handleObChange}/>
-                <label htmlFor="no">분만X</label>
-            </div>
+                    <input type="radio" id="yes" name="ob" value="O" checked onChange={handleObChange}/>
+                    <label htmlFor="yes">O</label>
+                </div>
+                <div>
+                    <input type="radio" id="no" name="ob" value="X" onChange={handleObChange}/>
+                    <label htmlFor="no">X</label>
+                </div>
+            </ObInnerContainer>
+            </ObContainer>
             <InputComment placeholder="리뷰 작성" onChange={handleTextBoxChange}></InputComment>
-            <button type="submit">작성</button>
+            <SubmitButton type="submit">작성</SubmitButton>
         </InfoForm>
         </ReviewBoxWrapper>
     </div>
@@ -89,6 +120,7 @@ const ReviewBoxWrapper = styled.div`
     width: 80vw;
     height: 80vh;
     gap: 10px;
+    margin: 50px;
 `;
 
 const InputInfo = styled.input`
@@ -108,27 +140,28 @@ const InfoForm = styled.form`
   gap: 10px;
 `;
 
-const ObForm = styled.form`
+const ObContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+    padding: 10px;
+`;
+
+const ObInnerContainer = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 100%;
-
-    input {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 10px;
-    }
+    gap: 10px;
+    margin-right: 20px;
 
     div {
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        gap: 5px;
     }
-    
-`
+`;
 
 const InputComment = styled.input`
     width: 100%;
@@ -138,5 +171,18 @@ const InputComment = styled.input`
     border-radius: 3px;
     font-size: 16px;    
     outline: none;
+`;
+
+const SubmitButton = styled.button`
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  &:hover {
+    background-color: #e0e0e0;
+  }
 `;
 
