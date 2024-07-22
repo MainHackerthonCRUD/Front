@@ -42,7 +42,7 @@ const NavWapper = styled.div`
     gap: 10px;
     width: 100%;
     background-color: #ffffff;
-    margin-bottom: 30px;
+    margin: 10px 0px 30px 30px;
     a {
       color: #FECD55;
     }

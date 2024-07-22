@@ -8,6 +8,8 @@ import Home from './pages/homepage';
 import ErrorPage from './pages/errorpage';
 import LoginPage from './pages/loginpage';
 import SignupPage from './pages/signuppage';
+import NewReview from './pages/newreview';
+import WriteNewReview from './pages/writenewreview';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,15 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignupPage />
-      }
+      },
+      {
+        path: "addreview",
+        element: <NewReview/>
+      },
+      {
+        path: "writereview",
+        element: <WriteNewReview/>
+      },
     ]
   },
 ]);
