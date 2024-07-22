@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SearchBox from "./mainsearch";
+import RegionBox from "./regionbutton";
 
 export default function HomePage() {
 
@@ -9,8 +10,8 @@ export default function HomePage() {
       
       <LogoSentence>빠르게 산부인과를 가야할 때</LogoSentence>
       <Logo> 마다닥 </Logo>
-      
       <SearchBox/>
+      <RegionBox/>
       </MainContainer>
       </>
     );
@@ -23,6 +24,7 @@ const MainContainer = styled.div`
     align-items: center;
     gap: 10px;
     height: 60vh;
+    margin: 80px;
 `
 
 const LogoSentence = styled.p`
