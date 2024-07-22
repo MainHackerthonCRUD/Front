@@ -22,6 +22,7 @@ export default function SearchBox(){
 
     return(
         <SearchContainer>
+        <SearchInputContainer>
         <Searchinput type = "search"
         placeholder = "산부인과 후기 검색하기"
         className = 'SearchInput'
@@ -33,6 +34,7 @@ export default function SearchBox(){
         onClick={handleSearch}>
          검색
         </Searchbutton>
+        </SearchInputContainer>
         </SearchContainer>
     )
 } 
@@ -40,30 +42,39 @@ export default function SearchBox(){
 
 const SearchContainer = styled.div`
     display: flex;
-    //flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    margin-bottom: 50px;
+`;
 
-`
-const Searchinput = styled.input`
-    width: 600px;
+const SearchInputContainer = styled.div`
+    position: relative;
+    width: 650px;
     height: 80px;
-    margin-top: 50px; 
+    margin: 50px 0 0 0 ;
+`;
+const Searchinput = styled.input`
+    width: 650px;
+    height: 80px;
     border: 2px solid #FECD55;
     border-radius: 20px;
     font-size: 20px;
     padding-left: 20px;
+    padding-right: 100px;
     outline: none;
     `
 
 const Searchbutton = styled.button`
-    width: 100px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90px;
+
     height: 80px;
-    margin-top:50px;
-    border-radius: 20px;
+    border-radius: 0 20px 20px 0;
     border: 2px solid #FECD55;
-    background-color: #FECD55;
+    background-color: #FFFF;
     color: black;
     font-size: 20px;
     cursor: pointer;
