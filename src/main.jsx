@@ -11,6 +11,7 @@ import SignupPage from './pages/signuppage';
 import WriteNewReview from './pages/writenewreview';
 import ReviewDetail from './pages/reviewdetail';
 import MyPage from './pages/mypage';
+import SearchNameResults from './pages/searchnameresults';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/mypage/:pk",
         element: <MyPage/>
+      },
+      {
+        path: "/results/:hospital_name",
+        element: <SearchNameResults/>
       }
     ]
   },
