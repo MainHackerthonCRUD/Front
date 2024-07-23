@@ -1,7 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import React from "react";
+
+
 
 export default function RegionBox(){
-    
+    const navigate = useNavigate();
+    const handleMoreClick = () => {
+        navigate("/region-plus");
+    };
+
     return(
         <RegionContainer>
             <Region>강북구</Region>
@@ -13,7 +21,7 @@ export default function RegionBox(){
             <Region>서초구</Region>
             <Region>영등포구</Region>
             <Region>마포구</Region>
-            <Region>더보기...</Region>
+            <Region onClick = {handleMoreClick}>더보기...</Region>
         </RegionContainer>
     )
 }
