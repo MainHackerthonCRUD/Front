@@ -17,7 +17,7 @@ jobs:
       - name: creates output
         run: ./build.sh
       - name: Pushes to another repository
-        uses: wh0land/github-action-push-to-another-repository@main
+        uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: AUTO_ACTIONS
         with:
