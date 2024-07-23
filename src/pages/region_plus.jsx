@@ -57,41 +57,42 @@ export default function RegionPlus(){
         </DetailContainer>
         
         <DetailContainer>
-        <p>ㅈ(종로구~중랑구)</p>
+        <SectionTitle>ㅈ(종로구~중랑구)</SectionTitle>
             <Region>종로구</Region>
             <Region>중구</Region>
             <Region>중랑구</Region>
         </DetailContainer>
         </RegionContainer>
-        <br/>
+        
         <SearchBox/>
         </>
     )
 }
 
+const RegionContainer = styled.div`
+    justify-content: center;
+    align-items: center;
+
+
+`
 
 const Title = styled.h1`
     color: #4A4A4A;
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 40px;
+    margin-bottom: 50px;
+    text-align:center;
 `;
 
 const SectionTitle = styled.p`
     width: 100%;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 25px;
     color: #4A4A4A;
     font-weight: bold;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #DFE0DF;
-    padding-bottom: 5px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #FECD55;
+    padding-bottom: 20px;
 `;
-
-const RegionContainer = styled.div`
-    justify-content: center;
-    align-items: center;
-
-`
 
 const Region = styled.button`
     width: 15%;
@@ -104,10 +105,22 @@ const Region = styled.button`
     color: #716f6f;
     font-weight: 550;
     font-size: 16px;
+    margin: 10px 10px 10px 10px;
 
-    margin: 10px 10px 10px 10px
-    
-`
+    transition: transform 0.2s;
+
+    &:hover{
+        transform: scale(1.05);
+        background-color: #FECD55;
+        color: black;
+    }
+   
+`;
+
 const DetailContainer = styled.div`
     gap:20px;
+    margin-bottom:30px;
+    background-color: #f7f7f7;
+    border-radius: 20px;
+    padding: 20px 20px 20px 20px;
 `
