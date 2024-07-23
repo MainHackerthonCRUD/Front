@@ -12,8 +12,10 @@ jobs:
     container: pandoc/latex
     steps:
       - uses: actions/checkout@v2
+      - name: List files for debugging
+        run: ls -al # 현재 디렉토리의 파일 목록을 확인
       - name: Set up permissions
-        run: chmod +x ./build.sh 
+        run: chmod +x ./build.sh # build.sh 파일이 루트 디렉토리에 있는지 확인
       - name: creates output
         run: ./build.sh
       - name: Pushes to another repository
@@ -23,6 +25,6 @@ jobs:
         with:
           source-directory: 'output'
           destination-github-username: 'wh0land'
-          destination-repository-name: 'pandoc-test-output'
+          destination-repository-name: 'madadoc'
           user-email: EMAIL
           target-branch: master
