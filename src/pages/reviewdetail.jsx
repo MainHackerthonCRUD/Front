@@ -30,21 +30,38 @@ export default function ReviewDetail() {
     }
 
     return (
-            <ReviewWrapper>
+        <div>
+            <ReviewPageWrapper>
+            <h2>리뷰상세</h2>
+            <ReviewItemWrapper>
                 <h3>{detail.user}</h3>
                 <div>
                 <InfoHospital>{detail.hospital_name}</InfoHospital>
                 <InfoHospital>{detail.region}</InfoHospital>
                 </div>
                 <p>{detail.textbox}</p>
-            </ReviewWrapper>
+            </ReviewItemWrapper>
+            </ReviewPageWrapper>
+        </div>
     );
 }
 
-const ReviewWrapper = styled.div`
+const ReviewPageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    width: 80vw;
+
+    h2 {
+        margin-bottom: 30px;
+    }
+`
+
+const ReviewItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 80px;
   border-top: 1px solid #d9d9d9;
   border-bottom: 1px solid #d9d9d9;
   width: 100%;

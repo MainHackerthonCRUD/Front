@@ -12,6 +12,7 @@ import WriteNewReview from './pages/writenewreview';
 import ReviewDetail from './pages/reviewdetail';
 import MyPage from './pages/mypage';
 import RegionPlus from './pages/region_plus';
+import SearchNameResults from './pages/searchnameresults';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "region-plus",
         element: <RegionPlus/>
+      },
+      {
+        path: "/results/:hospital_name",
+        element: <SearchNameResults/>
       }
     ]
   },
