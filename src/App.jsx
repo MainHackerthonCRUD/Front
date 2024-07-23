@@ -26,4 +26,5 @@ export const PageWrapper = styled.div`
     align-items: center;
     margin: 0 20px;
     min-height: 100vh;
+    max-width: 100vw;
 `;

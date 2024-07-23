@@ -38,7 +38,7 @@ export default function LoginPage() {
       return response.data;
     } catch (error) {
       console.log(error);
-      setErrorMessage(error.response?.data?.message || '로그인에 실패했습니다. 다시 시도해 주세요.');
+      setErrorMessage(error.response?.data?.message || '아이디 또는 비밀번호가 틀렸습니다.');
     } finally {
       setIsLoading(false);
     }
@@ -51,7 +51,7 @@ export default function LoginPage() {
         <InputBox id="username" type="text" name="id" placeholder="아이디" value={username} onChange={handleUsernameChange} autoComplete="username"/>
         <InputBox id="password" type="password" name="password" placeholder="비밀번호" value={password} onChange={handlePasswordChange} autoComplete="current-password"/>
         <button type="submit" disabled={isLoading}>
-          {isLoading ? '로그인 중...' : '확인'}
+          {isLoading ? '...' : '확인'}
         </button>
       </form>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
@@ -74,7 +74,7 @@ export default function LoginPage() {
     margin: 80px;
 
     button {
-      width: 280px;
+      width: 260px;
       height: 35px;
       background-color: #FECD55; 
       border-style: none;
@@ -104,7 +104,7 @@ export default function LoginPage() {
   `;
 
   const ErrorMessage = styled.p`
-    color: red;
+    color: #da0000;
     font-size: 14px;
   `;
 

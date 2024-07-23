@@ -8,8 +8,9 @@ import Home from './pages/homepage';
 import ErrorPage from './pages/errorpage';
 import LoginPage from './pages/loginpage';
 import SignupPage from './pages/signuppage';
-import NewReview from './pages/newreview';
 import WriteNewReview from './pages/writenewreview';
+import ReviewDetail from './pages/reviewdetail';
+import MyPage from './pages/mypage';
 
 const router = createBrowserRouter([
   {
@@ -30,13 +31,17 @@ const router = createBrowserRouter([
         element: <SignupPage />
       },
       {
-        path: "addreview",
-        element: <NewReview/>
-      },
-      {
         path: "writereview",
         element: <WriteNewReview/>
       },
+      {
+        path: "review/:postid",
+        element: <ReviewDetail/>
+      },
+      {
+        path: "/mypage/:pk",
+        element: <MyPage/>
+      }
     ]
   },
 ]);

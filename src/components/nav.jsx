@@ -20,30 +20,53 @@ export default function Nav() {
   if (!isAuthenticated) {
     return (
       <NavWapper>
+        <div>
           <a href="/">Home</a>
           <a href="/login">login</a>
           <a href="/signup">signup</a>
+        </div>
       </NavWapper>
     );
   } else {
     return (
       <NavWapper>
+        <div>
           <a href="/">Home</a>
           <a onClick={handleLogout}>logout</a>
-          <p>hello, {user}</p>
+        </div>
+        <a href='/mypage/:pk'>{user}</a>
       </NavWapper>
     );
   }
 }
 
 const NavWapper = styled.div`
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    gap: 10px;
-    width: 100%;
+    justify-content: space-between;
+    max-width: 100vw;
     background-color: #ffffff;
-    margin: 10px 0px 30px 30px;
+    margin: 10px 30px 30px 30px;
     a {
       color: #FECD55;
+      text-decoration-line: none;
+      &:hover {
+        color: #FFAA00;
+      }
+    }
+
+    div {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+
+    span {
+      color: #FFAA00;
+    }
+
+    p {
+      color: #181818;
     }
 `;
