@@ -1,9 +1,16 @@
 import styled from "styled-components"
 import React from "react";
 import SearchBox from "./mainsearch";
+import { useNavigate } from "react-router-dom";
 
 
 export default function RegionPlus(){
+
+    const navigate = useNavigate();
+    const handlebuttonClick = () => {
+        navigate();
+    };
+    
     return(
         <>
         {/*<p>가나다순</p>
@@ -12,8 +19,6 @@ export default function RegionPlus(){
         <p>서대문구, 서초구, 성동구, 성북구, 송파구</p>
         <p>양천구, 영등포구, 용산구, 은평구</p>
         <p>종로구, 중구, 중랑구</p>*/}
-
-        
 
         <RegionContainer>
         <Title>전체 지역 보기</Title>
