@@ -47,5 +47,12 @@ const Region = styled.button`
     color: #716f6f;
     font-weight: 550;
     font-size: 16px;
-    
-`
+    transition: transform 0.2s;
+
+    &:hover{
+        transform: scale(1.05);
+        background-color: #FECD55;
+        color: black;
+    }
+   
+`;
