@@ -1,18 +1,27 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import useAuthStore from "../store";
 
 export default function WriteNewReview() {
     const [cookies, setCookie] = useCookies(['access', 'nickname']);
+    const { isAuthenticated } = useAuthStore();
     let auth = cookies.access;
-
+    
     const navigate = useNavigate();
     const [hospital_name, setHospitalName] = useState(''); //이걸 수정해서 연결된 산부인과 이름이 자동으로 들어가게 고치기
     const [region, setRegion] = useState(''); //위와 동일
     const [ob, setOb] = useState('O');
     const [textbox, setTextBox] = useState('');
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            alert('리뷰를 쓰려면 로그인을 하세요!');
+            navigate('/login');
+        }
+    }, [isAuthenticated, navigate]);
 
     const handleHospitalnameChange = (e) => {
         setHospitalName(e.target.value);
