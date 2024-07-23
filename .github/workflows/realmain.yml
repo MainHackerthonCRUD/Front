@@ -25,4 +25,4 @@ jobs:
           destination-github-username: 'wh0land'
           destination-repository-name: 'madadoc'
           user-email: EMAIL
-          target-branch: master
+          target-branch: main
