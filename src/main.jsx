@@ -13,6 +13,7 @@ import ReviewDetail from './pages/reviewdetail';
 import MyPage from './pages/mypage';
 import RegionPlus from './pages/region_plus';
 import SearchNameResults from './pages/searchnameresults';
+import RegionResults from './pages/region_results';
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/results/:hospital_name",
         element: <SearchNameResults/>
+      },
+      {
+        path:"/region/:region_name",
+        element:<RegionResults/>
       }
     ]
   },
