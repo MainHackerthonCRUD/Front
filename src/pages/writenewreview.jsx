@@ -127,9 +127,11 @@ const ReviewBoxWrapper = styled.div`
     align-items: center;
     border-radius: 15px;
     width: 80vw;
-    height: 80vh;
+    max-width: 650px;
     gap: 10px;
-    margin: 50px;
+    background-color: #f7f7f7;
+    border-radius: 20px;
+    padding: 20px 20px 20px 20px;
 `;
 
 const InputInfo = styled.input`
@@ -157,6 +159,7 @@ const ObContainer = styled.div`
     border: 1px solid #d9d9d9;
     width: 100%;
     padding: 10px;
+    background-color: white;
 `;
 
 const ObInnerContainer = styled.div`
@@ -187,11 +190,15 @@ const SubmitButton = styled.button`
   padding: 10px;
   border: 1px solid #d9d9d9;
   border-radius: 3px;
+  background-color: #DFE0DF;
+  color: #716f6f;
+  font-weight: 550;
   font-size: 16px;
-  cursor: pointer;
-  background-color: #f0f0f0;
-  &:hover {
-    background-color: #e0e0e0;
-  }
+    
+  &:hover{
+    transform: scale(1.01);
+    background-color: #FECD55;
+    color: black;
+    }
 `;
 

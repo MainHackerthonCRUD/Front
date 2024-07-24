@@ -49,10 +49,15 @@ export default function ReviewDetail() {
 const ReviewPageWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin-top: 80px;
+    border-radius: 15px;
     width: 80vw;
+    max-width: 650px;
+    gap: 10px;
+    background-color: #f7f7f7;
+    border-radius: 20px;
+    padding: 20px 20px 20px 20px;
+    margin-top: 80px;
 
     h2 {
         margin-bottom: 30px;
