@@ -39,11 +39,11 @@ export default function RegionBox(){
 const RegionContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 30px;
     height: 60vh;
-    max-width:500px;
-    margin: auto;
+    width:80%;
+    //margin: auto;
 `
 
 const Region = styled.button`

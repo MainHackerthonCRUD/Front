@@ -12,6 +12,7 @@ export default function HomePage() {
       <Logo> 마다닥 </Logo>
       <SearchBox/>
       <RegionBox/>
+
       </MainContainer>
       </>
     );
@@ -26,6 +27,7 @@ const MainContainer = styled.div`
     height: 60vh;
     margin: 80px;
 `
+
 
 const LogoSentence = styled.p`
   color : #7d7c7c;

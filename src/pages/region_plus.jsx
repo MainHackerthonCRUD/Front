@@ -132,8 +132,10 @@ const Region = styled.button`
 
 const DetailContainer = styled.div`
     gap:20px;
+    width: 650px;
     margin-bottom:30px;
     background-color: #f7f7f7;
     border-radius: 20px;
     padding: 20px 20px 20px 20px;
+
 `
