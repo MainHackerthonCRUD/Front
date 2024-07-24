@@ -47,10 +47,14 @@ const NavWapper = styled.div`
     justify-content: space-between;
     max-width: 100vw;
     background-color: #ffffff;
-    margin: 10px 30px 30px 30px;
+    margin: 20px 30px 30px 30px;
+
+    font-size:20px;
+    font-weight: 500;
     a {
       color: #FECD55;
       text-decoration-line: none;
+      padding: 0 10px 0 0;
       &:hover {
         color: #FFAA00;
       }
