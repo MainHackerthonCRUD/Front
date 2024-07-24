@@ -12,7 +12,7 @@ import WriteNewReview from './pages/writenewreview';
 import ReviewDetail from './pages/reviewdetail';
 import MyPage from './pages/mypage';
 import RegionPlus from './pages/region_plus';
-import SearchNameResults from './pages/searchnameresults';
+import SearchNameResults from './pages/name_results';
 import RegionResults from './pages/region_results';
 
 const router = createBrowserRouter([
