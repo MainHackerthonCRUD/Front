@@ -29,8 +29,9 @@ export default function SearchNameResults() {
   return (
     <div>
       <ResultWrapper>
-      <h2>검색결과</h2>
-        {results.map((result, index) => (
+      <h2>병원명 검색 결과</h2>
+      <ResultInnerContainer>
+      {results.map((result, index) => (
           <ResultItem key={index}>
             <a onClick={() => handleClickResult(result)}>
             <div>
@@ -41,22 +42,34 @@ export default function SearchNameResults() {
             <p>{result.textbox}</p>
           </ResultItem>
         ))}
+      </ResultInnerContainer>
       </ResultWrapper>
     </div>
   )
 }
 
-const ResultWrapper = styled.div`
-  margin-top: 80px;
+export const ResultWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  margin-top: 80px;
   gap: 10px;
-  width: 80vw;
 `;
 
-const ResultItem= styled.div`
+export const ResultInnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  width: 80vw;
+  max-width: 650px;
+  gap: 10px;
+  background-color: #f7f7f7;
+  border-radius: 20px;
+  padding: 20px 20px 20px 20px;
+`;
+
+export const ResultItem= styled.div`
   display: flex;
   flex-direction: column;
   border-top: 1px solid #d9d9d9;
@@ -77,7 +90,6 @@ const ResultItem= styled.div`
   a {
     &:hover {
       background-color: #FECD55;
-      color: white;
     }
   }
 `;
