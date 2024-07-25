@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import SearchBox from "./mainsearch";
 import RegionBox from "./regionbutton";
+import MainWrite from "./mainwrite_button";
 
 export default function HomePage() {
 
@@ -12,7 +13,7 @@ export default function HomePage() {
       <Logo> 마다닥 </Logo>
       <SearchBox/>
       <RegionBox/>
-
+      <MainWrite/>
       </MainContainer>
       </>
     );
