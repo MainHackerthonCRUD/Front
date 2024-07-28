@@ -26,7 +26,7 @@ const MainContainer = styled.div`
     align-items: center;
     gap: 10px;
     height: 60vh;
-    margin: 80px;
+    margin: 130px;
 `
 
 

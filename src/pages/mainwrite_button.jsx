@@ -32,6 +32,7 @@ const ReviewButton = styled.button`
     height: 80px;
     cursor: pointer;
     border: none;
+    margin: 10px;
     border-radius: 10px;
     background-color: #fece55d6;
     color: black;
@@ -43,6 +44,7 @@ const ReviewButton = styled.button`
         transform: scale(1.02);
         background-color: #FECD55;
         color: black;
+        font-weight: 800;
     }
     
 `
