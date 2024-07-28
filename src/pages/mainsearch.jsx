@@ -112,7 +112,7 @@ const SearchInputContainer = styled.div`
     position: relative;
     width: 650px;
     height: 80px;
-    margin: 50px 0 0 0 ;
+    margin: 20px 0 0 0 ;
 `;
 const Searchinput = styled.input`
     width: 650px;

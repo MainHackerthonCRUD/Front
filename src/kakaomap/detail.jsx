@@ -1,5 +1,6 @@
+import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
-
+import SearchBox from "../pages/mainsearch"
 
 export default function Detail(){
   const [map, setMap] = useState(null);
@@ -57,6 +58,7 @@ export default function Detail(){
   return (
     <div>
       <div>
+        <SearchBox/>
         <input
           type="text"
           value={keyword}
@@ -74,7 +76,8 @@ export default function Detail(){
           <p>경도: {selectedPlace.x}</p>
         </div>
       )}
-      <div id="map" style={{ width: '100%', height: '500px', marginTop: '20px' }}></div>
+      <div id="map" style={{ width: '500px', height: '500px', marginTop: '20px' }}></div>
     </div>
   );
 }
+
