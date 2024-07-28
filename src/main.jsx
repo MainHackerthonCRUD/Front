@@ -14,6 +14,7 @@ import MyPage from './pages/mypage';
 import RegionPlus from './pages/region_plus';
 import SearchNameResults from './pages/name_results';
 import RegionResults from './pages/region_results';
+import Detail from './kakaomap/detail';
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path:"/region/:region_name",
         element:<RegionResults/>
+      },
+      {
+        path:"/kakaomap/detail",
+        element:<Detail/>
       }
     ]
   },
