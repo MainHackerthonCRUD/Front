@@ -21,28 +21,33 @@ export default function RegionBox(){
     };
 
     return(
+        <>
         <RegionContainer>
             <Region onClick = {() => handleRegionClick('강북구')}>강북구</Region>
             <Region onClick = {() => handleRegionClick('성북구')}>성북구</Region>
             <Region onClick = {() => handleRegionClick('노원구')}>노원구</Region>
             <Region onClick = {() => handleRegionClick('강남구')}>강남구</Region>
             <Region onClick = {() => handleRegionClick('관악구')}>관악구</Region>
+        </RegionContainer>
+        <RegionContainer>
             <Region onClick = {() => handleRegionClick('동작구')}>동작구</Region>
             <Region onClick = {() => handleRegionClick('서초구')}>서초구</Region>
             <Region onClick = {() => handleRegionClick('영등포구')}>영등포구</Region>
             <Region onClick = {() => handleRegionClick('마포구')}>마포구</Region>
             <Region onClick = {handleMoreClick}>더보기...</Region>
         </RegionContainer>
+        </>
     )
 }
 
 const RegionContainer = styled.div`
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 30px;
-    height: 60vh;
-    width:80%;
+    height: 100px;
+    width:165%;
     //margin: auto;
 `
 

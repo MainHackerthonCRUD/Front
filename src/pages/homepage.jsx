@@ -7,14 +7,16 @@ export default function HomePage() {
 
     return (
       <>
-      <MainContainer>
+      
       
       <LogoSentence>빠르게 산부인과를 가야할 때</LogoSentence>
       <Logo> 마다닥 </Logo>
       <SearchBox/>
+      <MainContainer>
       <RegionBox/>
-      <MainWrite/>
       </MainContainer>
+      <MainWrite/>
+      
       </>
     );
   }  
@@ -25,9 +27,8 @@ const MainContainer = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    height: 60vh;
-    margin: 30px 0 0px 0;
-`
+    //height: 60vh;
+    margin: 0 0 0px 0;`
 
 
 const LogoSentence = styled.p`

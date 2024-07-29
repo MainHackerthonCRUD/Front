@@ -85,6 +85,7 @@ const SignupDiv = styled.div`
   padding: 30px;
   border-radius: 10px;
   margin: 80px;
+  margin-top: 0px;
 
   button {
     width: 260px;
