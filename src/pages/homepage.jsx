@@ -27,6 +27,7 @@ const MainContainer = styled.div`
     gap: 10px;
     height: 60vh;
     margin: 130px;
+    margin-top: 80px;
 `
 
 
