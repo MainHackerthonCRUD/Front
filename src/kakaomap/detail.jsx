@@ -68,16 +68,32 @@ export default function Detail(){
         <button onClick={searchHospital}>검색</button>
       </div>
       {selectedPlace && (
-        <div id="result">
-          <p>병원 이름: {selectedPlace.place_name}</p>
+        <InformContainer>
+          <NameText>{selectedPlace.place_name}</NameText>
+          <a href={selectedPlace.place_url} target="_blank" rel="noopener noreferrer">더 많은 정보</a>
+          <InformText>전화번호: {selectedPlace.phone || '정보 없음'}</InformText>
+
           <p>도로명 주소: {selectedPlace.road_address_name || '정보 없음'}</p>
           <p>지번 주소: {selectedPlace.address_name || '정보 없음'}</p>
-          <p>위도: {selectedPlace.y}</p>
-          <p>경도: {selectedPlace.x}</p>
-        </div>
+          {/*<p>위도: {selectedPlace.y}</p>
+          <p>경도: {selectedPlace.x}</p>*/}
+        </InformContainer>
       )}
       <div id="map" style={{ width: '500px', height: '500px', marginTop: '20px' }}></div>
     </div>
   );
 }
 
+const InformContainer = styled.div`
+  
+`
+const NameText = styled.h3`
+  font-size: 20px;
+  //font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`
+
+const InformText = styled.p`
+  font-size : 8px;
+`
