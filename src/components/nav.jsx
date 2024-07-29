@@ -47,7 +47,7 @@ const NavWapper = styled.div`
     justify-content: space-between;
     max-width: 100vw;
     background-color: #ffffff;
-    margin: 20px 30px 150px 30px;
+    margin: 20px 30px 100px 30px;
 
     font-size:20px;
     font-weight: 500;
