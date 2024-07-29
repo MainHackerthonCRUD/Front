@@ -89,7 +89,7 @@ export default function SearchBox(){
             {suggestions.map((suggestion, index) => 
             <SuggestionItem key={index}>
                 <a onClick={() => handleSuggestionClick(suggestion)}>
-                    {suggestion.hospital_name} ({suggestion.region})
+                    {suggestion.hospital_name} ({suggestion.gu})
                 </a>
             </SuggestionItem>)}
            </SuggestionsDropdown> 

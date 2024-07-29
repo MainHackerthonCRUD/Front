@@ -13,7 +13,7 @@ export default function SearchNameResults() {
     useEffect(() => {
       const Results = async () => {
           try {
-            const response = await api.get(`/board/name/${hospital_name}`);
+            const response = await api.get(`/board/search/${hospital_name}`);
             setResults(response.data);
           } catch (error) {
             console.error(error);
@@ -35,8 +35,12 @@ export default function SearchNameResults() {
           <ResultItem key={index}>
             <a onClick={() => handleClickResult(result)}>
             <div>
-              <span>No. {result.id}</span>
-              <span>{result.hospital_name} ({result.region})</span>
+              <span>{result.hospital_name} ({result.gu})</span>
+            </div>
+            <div>
+              <span>{result.address}</span>
+              <span>{result.reservation}</span>
+              <span>블로그 리뷰({result.blogcnt})</span>
             </div>
             </a>
             <p>{result.textbox}</p>
