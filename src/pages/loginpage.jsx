@@ -71,7 +71,7 @@ export default function LoginPage() {
     height: 50%;
     padding: 30px;
     border-radius: 10px;
-    margin: 80px;
+    margin: 0px;
 
     button {
       width: 260px;

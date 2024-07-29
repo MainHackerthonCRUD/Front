@@ -30,7 +30,7 @@ export default function SearchBox(){
 
         if (searchText) {
             try {
-                const response = await api.get(`/board/name/${searchText}`);
+                const response = await api.get(`/board/search/${searchText}`);
                 setSuggestions(response.data);
             } catch (error) {
                 console.error(error);
