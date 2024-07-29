@@ -4,6 +4,7 @@ import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import useAuthStore from "../store";
+import CoutingStar from "../components/coutingstar";
 
 export default function WriteNewReview() {
     const [cookies, setCookie] = useCookies(['access', 'nickname']);
@@ -11,10 +12,10 @@ export default function WriteNewReview() {
     let auth = cookies.access;
     
     const navigate = useNavigate();
-    const [hospital_name, setHospitalName] = useState(''); //이걸 수정해서 연결된 산부인과 이름이 자동으로 들어가게 고치기
-    const [region, setRegion] = useState(''); //위와 동일
-    const [ob, setOb] = useState('O');
-    const [textbox, setTextBox] = useState('');
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
+    const [star, setStar] = useState(null);
+    const [selectedTitle, setSelectedTitle] = useState('');
 
     useEffect(() => {
         if (!isAuthenticated) {
@@ -23,33 +24,35 @@ export default function WriteNewReview() {
         }
     }, [isAuthenticated, navigate]);
 
-    const handleHospitalnameChange = (e) => {
-        setHospitalName(e.target.value);
+    const handleTitleChange = (e) => {
+        setTitle(e.target.value);
+        setSelectedTitle('');
     }
-    const handleRegionChange = (e) => {
-        setRegion(e.target.value);
+    const handleSelectTitleChange = (e) => {
+        setSelectedTitle(e.target.value);
+        setTitle(e.target.value);
     }
-    const handleObChange = (e) => {
-        setOb(e.target.value);
+    const handleBodyChange = (e) => {
+        setBody(e.target.value);
     }
-    const handleTextBoxChange = (e) => {
-        setTextBox(e.target.value);
+    const handleStarChange = (newStar) => {
+        setStar(newStar);
     }
 
     const WriteReview = async (e) => {
         e.preventDefault()
 
-        const data = { hospital_name, region, ob, textbox }
-
+        const data = { title, body, star }
+        //밑에 링크 나중에 수정 -- 병원 id에 맞게
         try {
-            const res = await api.post("/board/home/", data, {
+            const res = await api.post("/board/1/comment/", data, {
                 headers: {
                     Authorization: `Bearer ${auth}`,
                     'Content-Type': 'application/json'
                 }
             });
             alert('후기를 올렸습니다.');
-            navigate('/'); //나중에 게시글 목록으로 링크 변경
+            navigate('/'); //나중에 링크 변경
             console.log(res.data);
             return res.data;
         } catch (error) {
@@ -66,54 +69,31 @@ export default function WriteNewReview() {
         }
     }
 
+    const titleOptions = [
+        '최고예요',
+        '좋아요',
+        '만족했어요',
+        '그냥 그래요',
+        '별로예요',
+        '다시는 이용하지 않을 거예요'
+    ];
+
   return (
     <div>
         <ReviewBoxWrapper>
         <h2>리뷰작성</h2>
         <InfoForm onSubmit={WriteReview}>
-            <InputInfo placeholder="병원명" onChange={handleHospitalnameChange}></InputInfo>
-            <InputInfo list="regions" placeholder="지역(구)" onChange={handleRegionChange}/>
-            <datalist id="regions">
-                    <option value="종로구"></option>
-                    <option value="중구"></option>
-                    <option value="용산구"></option>
-                    <option value="성동구"></option>
-                    <option value="광진구"></option>
-                    <option value="동대문구"></option>
-                    <option value="중랑구"></option>
-                    <option value="성북구"></option>
-                    <option value="강북구"></option>
-                    <option value="도봉구"></option>
-                    <option value="노원구"></option>
-                    <option value="은평구"></option>
-                    <option value="서대문구"></option>
-                    <option value="마포구"></option>
-                    <option value="양천구"></option>
-                    <option value="강서구"></option>
-                    <option value="구로구"></option>
-                    <option value="금천구"></option>
-                    <option value="영등포구"></option>
-                    <option value="동작구"></option>
-                    <option value="관악구"></option>
-                    <option value="서초구"></option>
-                    <option value="강남구"></option>
-                    <option value="송파구"></option>
-                    <option value="강동구"></option>
-                </datalist> 
-            <ObContainer>
-            <h4>분만여부</h4>
-            <ObInnerContainer>
-            <div>
-                    <input type="radio" id="yes" name="ob" value="O" checked onChange={handleObChange}/>
-                    <label htmlFor="yes">O</label>
-                </div>
-                <div>
-                    <input type="radio" id="no" name="ob" value="X" onChange={handleObChange}/>
-                    <label htmlFor="no">X</label>
-                </div>
-            </ObInnerContainer>
-            </ObContainer>
-            <InputComment placeholder="리뷰 작성" onChange={handleTextBoxChange}></InputComment>
+            <SelectTitle value={selectedTitle} onChange={handleSelectTitleChange}>
+                <option value="">제목을 선택하세요</option>
+                    {titleOptions.map((option, index) => (
+                        <option key={index} value={option}>
+                            {option}
+                        </option>
+                    ))}
+            </SelectTitle>
+            <InputTitle placeholder="직접 제목 입력" onChange={handleTitleChange} value={title}/>
+            <InputBody placeholder="리뷰 작성" onChange={handleBodyChange} value={body}/>
+            <CoutingStar value={star} onChange={handleStarChange}></CoutingStar>
             <SubmitButton type="submit">작성</SubmitButton>
         </InfoForm>
         </ReviewBoxWrapper>
@@ -134,15 +114,6 @@ const ReviewBoxWrapper = styled.div`
     padding: 20px 20px 20px 20px;
 `;
 
-const InputInfo = styled.input`
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #d9d9d9;
-    border-radius: 3px;
-    font-size: 16px;    
-    outline: none;
-`;
-
 const InfoForm = styled.form`
   width: 100%;
   display: flex;
@@ -151,31 +122,29 @@ const InfoForm = styled.form`
   gap: 10px;
 `;
 
-const ObContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #d9d9d9;
+const InputTitle = styled.input`
     width: 100%;
     padding: 10px;
-    background-color: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    font-size: 16px;    
+    outline: none;
 `;
 
-const ObInnerContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-right: 20px;
+const SelectTitle = styled.select`
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    font-size: 16px;
+    outline: none;
 
-    div {
-        display: flex;
-        flex-direction: row;
-        gap: 5px;
+    option {
+        color: ${({ disabled }) => (disabled ? 'gray' : '#000')};
     }
 `;
 
-const InputComment = styled.input`
+const InputBody = styled.textarea`
     width: 100%;
     height: 70px;
     padding: 10px;

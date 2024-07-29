@@ -32,9 +32,10 @@ export default function LoginPage() {
       console.log(response.data);
       login(setCookie);
       setCookie('access', response.data.access, { path: '/' }); // 쿠키에 access 토큰 저장
-      setCookie('nickname', response.data.user.username, { path: '/' }); // 쿠키에 사용자 이름 저장
+      setCookie('nickname', response.data.user.nickname, { path: '/' }); // 쿠키에 사용자 이름 저장
       alert('로그인 되었습니다.')
       navigate('/');
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
