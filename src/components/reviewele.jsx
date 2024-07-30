@@ -38,14 +38,6 @@ export default function ReviewEle() {
     );
 }
 
-const ReviewWrapper = styled.div`
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, minmax(200px, auto));
-    gap: 10px 15px;
-`;
-
 const ReviewElement = styled.div`
     display: flex;
     flex-direction: column;

@@ -4,6 +4,7 @@ import ReviewEle from "./reviewele";
 export default function HospitalDetailReview() {
   return (
     <ReviewComponentWrapper>
+        <h2>리뷰 목록</h2>
         <ReviewWrapper>
             <ReviewEle/>
             <ReviewEle/>
@@ -21,7 +22,9 @@ const ReviewComponentWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 100vw;
+    max-width: 650px;
+    margin-top: 50px;
+    gap: 20px;
 `;
 
 const ReviewWrapper = styled.div`
