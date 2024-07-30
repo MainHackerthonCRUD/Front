@@ -60,15 +60,21 @@ export default function SignupPage() {
   return (
     <SignupDiv>
       <h2>회원가입</h2>
-      <form onSubmit={signupOK}>
-        <InputBox placeholder="아이디" value={username} name="username" onChange={handleUsernameChange}/>
-        <InputBox placeholder="이메일" type="email" value={email} name="email" onChange={handleEmailChange}/>
-        <InputBox placeholder="비밀번호" type="password" value={password1} name="password1" onChange={handlePassword1Change}/>
-        <InputBox placeholder="비밀번호 확인" type="password" value={password2} name="password2" onChange={handlePassword2Change}/>
-        <InputBox placeholder="닉네임" value={nickname} name="nickname" onChange={handleNicknameChange}/>
-        <button type="submit">확인</button>
-      </form>
-      <a href="/login">로그인</a>
+      <SubmitForm onSubmit={signupOK}>
+        <div>
+          <InputBox placeholder="아이디" value={username} name="username" onChange={handleUsernameChange}/>
+          <InputBox placeholder="이메일" type="email" value={email} name="email" onChange={handleEmailChange}/>
+          <InputBox placeholder="비밀번호" type="password" value={password1} name="password1" onChange={handlePassword1Change}/>
+          <InputBox placeholder="비밀번호 확인" type="password" value={password2} name="password2" onChange={handlePassword2Change}/>
+          <InputBox placeholder="닉네임" value={nickname} name="nickname" onChange={handleNicknameChange}/>
+        </div>
+        <SubmitButton type="submit">확인</SubmitButton>
+      </SubmitForm>
+      <LinkToOtherpage>
+        <SpanMSG>이미 가입하셨나요?</SpanMSG>
+        <SpanVar>|</SpanVar>
+        <a href="/login">로그인</a>
+      </LinkToOtherpage>
     </SignupDiv>
   );
 }
@@ -81,31 +87,68 @@ const SignupDiv = styled.div`
   gap: 10px;
   background-color: #ececec;
   width: 500px;
-  height: 50%;
+  height: 70%;
   padding: 30px;
   border-radius: 10px;
   margin: 80px;
   margin-top: 0px;
+`;
 
-  button {
-    width: 260px;
-    height: 35px;
-    background-color: #FECD55; 
-    border-style: none;
-    border-radius: 10px;
-    padding: 0 10px;
-  }
-
-  form {
+export const SubmitForm = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
-  }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+`;
+
+export const SubmitButton = styled.button`
+  width: 260px;
+  height: 35px;
+  background-color: #FECD55; 
+  border-style: none;
+  border-radius: 10px;
+  padding: 0 10px;
+
+  transition: transform 0.2s;
+
+  &:hover{
+    transform: scale(1.05);
+    background-color: #FECD55;
+    color: black;
+    }
+`;
+
+export const LinkToOtherpage = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
 
   a {
     font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
   }
+`;
+
+export const SpanMSG = styled.span`
+  font-size: 13px;
+  color: #434343;
+  font-weight: 600;
+`;
+
+export const SpanVar = styled.span`
+  font-size: 11px;
+  color: #5f5f5f;
+  font-weight: 800;
 `;
 

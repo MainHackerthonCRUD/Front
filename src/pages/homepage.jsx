@@ -27,7 +27,7 @@ const MainContainer = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    //height: 60vh;
+    height: 60vh;
     margin: 0 0 0px 0;`
 
 
