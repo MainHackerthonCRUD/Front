@@ -11,17 +11,17 @@ export default function SearchBox(){
     const [selectedidx, setSelectedIdx] = useState(-1);
     const navigate = useNavigate();
 
-    const handleChlickOutside = (e) => {
-        if (inputRef.current && !inputRef.current.contains(e.target)) {
+    const handleClickOutside = (e) => {
+        if (inputRef.current && !inputRef.current.contains(e.target))
             setIsFocus(false);
         }
     };
 
     useEffect(() => {
-        window.addEventListener('click', handleChlickOutside);
+        window.addEventListener('click', handleClickOutside);
         window.addEventListener('keydown', handleKeyDown);
         return () => {
-            window.removeEventListener('click', handleChlickOutside);
+            window.removeEventListener('click', handleClickOutside);
             window.removeEventListener('keydown', handleKeyDown);
         }
     }, [suggestions, selectedidx]);

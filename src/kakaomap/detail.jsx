@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
-import SearchBox from "../pages/mainsearch"
 
-export default function Detail(){
+export default function MapDetail(){
   const [map, setMap] = useState(null);
   const [places, setPlaces] = useState([]);
   const [keyword, setKeyword] = useState('');
@@ -56,9 +55,9 @@ export default function Detail(){
   };
 
   return (
-    <div>
+    <>
+    <InformContainer>
       <div>
-        <SearchBox/>
         <input
           type="text"
           value={keyword}
@@ -68,32 +67,55 @@ export default function Detail(){
         <button onClick={searchHospital}>검색</button>
       </div>
       {selectedPlace && (
-        <InformContainer>
+        <TextContainer>
           <NameText>{selectedPlace.place_name}</NameText>
           <a href={selectedPlace.place_url} target="_blank" rel="noopener noreferrer">더 많은 정보</a>
           <InformText>전화번호: {selectedPlace.phone || '정보 없음'}</InformText>
 
-          <p>도로명 주소: {selectedPlace.road_address_name || '정보 없음'}</p>
-          <p>지번 주소: {selectedPlace.address_name || '정보 없음'}</p>
+          <InformText>도로명 주소: {selectedPlace.road_address_name || '정보 없음'}</InformText>
+          <InformText>지번 주소: {selectedPlace.address_name || '정보 없음'}</InformText>
           {/*<p>위도: {selectedPlace.y}</p>
           <p>경도: {selectedPlace.x}</p>*/}
-        </InformContainer>
+        </TextContainer>
       )}
-      <div id="map" style={{ width: '500px', height: '500px', marginTop: '20px' }}></div>
-    </div>
+      <MapContainer>
+        <div id="map" style={{ width: '200px', height: '200px', marginTop: '20px' }}></div>
+        </MapContainer>
+    </InformContainer>
+    </>
   );
 }
 
 const InformContainer = styled.div`
-  
+  background-color: #f0f0f0e7;
+  width: 80%;
+  height: 100%;
+  border-radius: 5%;
+  text-align: center;
+  align-items: center; 
 `
-const NameText = styled.h3`
-  font-size: 20px;
-  //font-weight: 500;
-  margin-top: 10px;
+const TextContainer = styled.div`
+  width: 60%;
+  height:20%;
+  text-align: center;
+  align-items: center;
+  `
+const NameText = styled.h1`
+  font-size: 30px;
+  font-weight: 500;
+  margin-top: 30px;
   margin-bottom: 10px;
 `
 
 const InformText = styled.p`
-  font-size : 8px;
+  font-size : 15px;
+  margin: 5px;
 `
+
+const MapContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+`;

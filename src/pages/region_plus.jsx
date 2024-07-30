@@ -9,10 +9,10 @@ export default function RegionPlus(){
 
     const navigate = useNavigate();
 
-    const handleRegionClick = async(region) => {
+    const handleRegionClick = async(gu) => {
         try {
-            const response = await api.get(`/board/region/${region}`)
-            navigate(`/region/${region}`, {state: {results: response.data } });
+            const response = await api.get(`/board/search/${gu}`)
+            navigate(`/region/${gu}`, {state: {results: response.data } });
         } catch(error) {
             console.error("에러내역:",error);
         }
