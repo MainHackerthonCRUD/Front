@@ -81,7 +81,7 @@ const SignupDiv = styled.div`
   gap: 10px;
   background-color: #ececec;
   width: 500px;
-  height: 50%;
+  height: 70%;
   padding: 30px;
   border-radius: 10px;
   margin: 80px;
