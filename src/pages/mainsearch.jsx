@@ -8,20 +8,23 @@ export default function SearchBox(){
     const [isFocus, setIsFocus] = useState(false);
     const [searchText, setSearchText] = useState("");
     const [suggestions, setSuggestions] = useState([]);
+    const [selectedidx, setSelectedIdx] = useState(-1);
     const navigate = useNavigate();
 
     const handleChlickOutside = (e) => {
-        if (inputRef.current && !inputRef.current.cotains(e.target)) {
+        if (inputRef.current && !inputRef.current.contains(e.target)) {
             setIsFocus(false);
         }
     };
 
     useEffect(() => {
         window.addEventListener('click', handleChlickOutside);
+        window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('click', handleChlickOutside);
+            window.removeEventListener('keydown', handleKeyDown);
         }
-    }, []);
+    }, [suggestions, selectedidx]);
 
     const handleInputChange = async (e) => {
         const searchText = e.target.value;
@@ -65,6 +68,30 @@ export default function SearchBox(){
         navigate(`/results/${suggestion.hospital_name}`);
       };
 
+    const handleKeyDown = (e) => {
+        if (isFocus && suggestions.length > 0) {
+            switch (e.key) {
+                case 'ArrowUp':
+                    e.preventDefault();
+                    setSelectedIdx((prev) => 
+                        prev > 0 ? prev - 1 : suggestions.length - 1);
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault();
+                    setSelectedIdx((prev) => 
+                        prev < suggestions.length - 1 ? prev + 1 : 0);
+                    break;
+                case 'Enter':
+                    if (selectedidx >= 0) {
+                        handleSuggestionClick(suggestions[selectedidx]);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     return(
         <SearchContainer>
         <SearchInputContainer>
@@ -76,7 +103,7 @@ export default function SearchBox(){
         value={searchText}
         onChange={handleInputChange}
         onFocus={ () => setIsFocus(true) }
-        onKeyDown={handleEnter}
+        onKeyDown={handleKeyDown}
         />
 
         <Searchbutton
@@ -87,8 +114,12 @@ export default function SearchBox(){
         {isFocus && suggestions.length > 0 && (
            <SuggestionsDropdown>
             {suggestions.map((suggestion, index) => 
-            <SuggestionItem key={index}>
-                <a onClick={() => handleSuggestionClick(suggestion)}>
+            <SuggestionItem 
+            key={index}
+            selected={index === selectedidx}
+            onMouseEnter={() => setSelectedIdx(index)}
+            onClick={() => handleSuggestionClick(suggestion)}>
+                <a>
                     {suggestion.hospital_name} ({suggestion.gu})
                 </a>
             </SuggestionItem>)}
