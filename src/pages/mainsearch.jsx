@@ -10,16 +10,16 @@ export default function SearchBox(){
     const [suggestions, setSuggestions] = useState([]);
     const navigate = useNavigate();
 
-    const handleChlickOutside = (e) => {
+    const handleClickOutside = (e) => {
         if (inputRef.current && !inputRef.current.cotains(e.target)) {
             setIsFocus(false);
         }
     };
 
     useEffect(() => {
-        window.addEventListener('click', handleChlickOutside);
+        window.addEventListener('click', handleClickOutside);
         return () => {
-            window.removeEventListener('click', handleChlickOutside);
+            window.removeEventListener('click', handleClickOutside);
         }
     }, []);
 

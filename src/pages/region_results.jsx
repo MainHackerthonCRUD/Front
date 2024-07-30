@@ -20,13 +20,13 @@ export default function RegionResults() {
                 <p>해당 지역의 리뷰가 없습니다.</p>
             ) : (
                 <ResultInnerContainer>
-                    {results.map((review, index) => (
+                    {results.map((result, index) => (
                         <ResultItem key={index}>
-                            <a onClick={() => handleClickResult(review)}>
-                            <span>No. {review.id}</span>
-                            <span>{review.hospital_name} ({review.region})</span>
+                            <a onClick={() => handleClickResult(result)}>
+                            <span>No. {result.id}</span>
+                            <span>{result.hospital_name} ({result.gu})</span>
                             </a>
-                            <p>{review.textbox}</p>
+                            <p>{result}</p>
                         </ResultItem>
                     ))}
                 </ResultInnerContainer>
