@@ -48,14 +48,19 @@ export default function ReviewDetail() {
     return (
         <div>
             <ReviewPageWrapper>
-                <h2>리뷰상세</h2>
+                <h2>리뷰 상세</h2>
                 <ReviewItemWrapper>
-                    <h3>닉네임</h3>
+                    <h3>병원 이름|detail.title</h3>
+                </ReviewItemWrapper>
+                <ReviewItemWrapper>
                     <div>
-                        <InfoHospital>병원이름</InfoHospital>
-                        <InfoHospital>구</InfoHospital>
+                        <InfoHospital>detail.star</InfoHospital>
                     </div>
-                    <p>리뷰텍스트어쩌구저쩌구</p>
+                    <div>
+                        <InfoHospital>detail.nickname</InfoHospital>
+                        <InfoHospital>detail.created_at</InfoHospital>
+                    </div>
+                    <p>detail.body</p>
                 </ReviewItemWrapper>
             </ReviewPageWrapper>
         </div>
@@ -82,10 +87,14 @@ const ReviewPageWrapper = styled.div`
 const ReviewItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  border-top: 1px solid #d9d9d9;
+  justify-content: center;
   border-bottom: 1px solid #d9d9d9;
   width: 100%;
-  gap: 10px;
+  height: auto;
+
+  h3 {
+    margin-bottom: 5px;
+  }
 
   div {
     display: flex;
