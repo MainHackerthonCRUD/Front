@@ -11,7 +11,7 @@ export default function RegionPlus(){
 
     const handleRegionClick = async(gu) => {
         try {
-            const response = await api.get(`/board/search/${gu}`)
+            const response = await api.get(`/board/searchgu/${gu}`)
             navigate(`/region/${gu}`, {state: {results: response.data } });
         } catch(error) {
             console.error("에러내역:",error);

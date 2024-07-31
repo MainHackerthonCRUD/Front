@@ -26,7 +26,15 @@ export default function RegionResults() {
                             <span>No. {result.id}</span>
                             <span>{result.hospital_name} ({result.gu})</span>
                             </a>
-                            <p>{result}</p>
+                            <p>ID: {result.id}<br/>
+                                    병원 이름: {result.hospital_name}<br/>
+                                    주소: {result.address}<br/>
+                                    구: {result.gu}<br/>
+                                    예약 여부: {result.reservation ? "가능" : "불가능"}<br/>
+                                    방문 수: {result.visitcnt}<br/>
+                                    블로그 수: {result.blogcnt}<br/>
+                                    주요 의사 수: {result.maindoctorcnt}<br/>
+                                    코멘트 수: {result.comments.length}</p>
                         </ResultItem>
                     ))}
                 </ResultInnerContainer>
