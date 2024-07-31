@@ -17,7 +17,7 @@ export default function HospitalDetailReview() {
   );
 }
 
-const ReviewComponentWrapper = styled.div`
+export const ReviewComponentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
