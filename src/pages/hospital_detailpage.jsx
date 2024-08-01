@@ -6,7 +6,7 @@ export default function MergeDetail(){
 
     return(
         <>
-        <MapDetail/>
+        {/*<MapDetail/>*/}
         <HospitalDetailReview/>
         </>
     );
