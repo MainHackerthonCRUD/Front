@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import api from "../api";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import SuggestionsDropdown from '../components/suggestionsdropdown';
 
 export default function SearchBox() {
     const inputRef = useRef(null);
@@ -11,19 +12,17 @@ export default function SearchBox() {
     const [selectedidx, setSelectedIdx] = useState(-1);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        window.addEventListener('click', handleClickOutside);
+        return () => {
+            window.removeEventListener('click', handleClickOutside);
+        }
+    }, []);
+
     const handleClickOutside = (e) => {
         if (inputRef.current && !inputRef.current.contains(e.target))
             setIsFocus(false);
         }
-
-        useEffect(() => {
-            window.addEventListener('click', handleClickOutside);
-            window.addEventListener('keydown', handleKeyDown);
-            return () => {
-                window.removeEventListener('click', handleClickOutside);
-                window.removeEventListener('keydown', handleKeyDown);
-            }
-        }, [suggestions, selectedidx]);
     
         const handleInputChange = async (e) => {
             const searchText = e.target.value;
@@ -47,7 +46,7 @@ export default function SearchBox() {
         
             if (searchText) {
                 try{
-                    const response = await api.get(`/board/name/${searchText}`);
+                    const response = await api.get(`/board/search/${encodeURIComponent(searchText)}`);
                     console.log(response.data);
                     navigate(`/results/${searchText}`);
                 }catch(error){
@@ -62,7 +61,7 @@ export default function SearchBox() {
           };
     
         const handleKeyDown = (e) => {
-            if (isFocus && suggestions.length > 0) {
+            if (suggestions.length > 0) {
                 switch (e.key) {
                     case 'ArrowUp':
                         e.preventDefault();
@@ -77,11 +76,15 @@ export default function SearchBox() {
                     case 'Enter':
                         if (selectedidx >= 0) {
                             handleSuggestionClick(suggestions[selectedidx]);
+                        } else {
+                            handleSearch();
                         }
                         break;
                     default:
                         break;
                 }
+            } else if (e.key === 'Enter') {
+                handleSearch();
             }
         }
     
@@ -105,18 +108,11 @@ export default function SearchBox() {
              검색
             </Searchbutton>
             {isFocus && suggestions.length > 0 && (
-               <SuggestionsDropdown>
-                {suggestions.map((suggestion, index) => 
-                <SuggestionItem 
-                key={index}
-                selected={index === selectedidx}
-                onMouseEnter={() => setSelectedIdx(index)}
-                onClick={() => handleSuggestionClick(suggestion)}>
-                    <a>
-                        {suggestion.hospital_name} ({suggestion.gu})
-                    </a>
-                </SuggestionItem>)}
-               </SuggestionsDropdown> 
+                <SuggestionsDropdown
+                    suggestions={suggestions}
+                    selectedidx={selectedidx}
+                    onSuggestionClick={handleSuggestionClick}
+                    setSelectedIdx={setSelectedIdx}/>
             )}
             </SearchInputContainer>
             </SearchContainer>
@@ -147,7 +143,7 @@ const Searchinput = styled.input`
     padding-left: 20px;
     padding-right: 100px;
     outline: none;
-    `
+`;
 
 const Searchbutton = styled.button`
     position: absolute;
@@ -166,24 +162,4 @@ const Searchbutton = styled.button`
     &:hover {
         background-color: #FECD55;
     }
-    `
-
-const SuggestionsDropdown = styled.div`
-position: absolute;
-top: 80px;
-width: 100%;
-border: 1px solid #ccc;
-border-radius: 0 0 20px 20px;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-background-color: #fff;
-z-index: 1000;
-`;
-
-const SuggestionItem = styled.div`
-padding: 10px;
-cursor: pointer;
-
-&:hover {
-    background-color: #f0f0f0;
-}
 `;
