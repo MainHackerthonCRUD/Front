@@ -9,8 +9,9 @@ export default function RegionResults() {
     const navigate = useNavigate();
 
     const handleClickResult = (review) => {
-        navigate(`/review/${review.id}`)
-      }
+        //navigate(`/review/${review.id}`)
+        navigate('/kakaomap/detail')
+      };
 
     return (
         <div>
@@ -30,11 +31,13 @@ export default function RegionResults() {
                                     병원 이름: {result.hospital_name}<br/>
                                     주소: {result.address}<br/>
                                     구: {result.gu}<br/>
-                                    예약 여부: {result.reservation ? "가능" : "불가능"}<br/>
-                                    방문 수: {result.visitcnt}<br/>
-                                    블로그 수: {result.blogcnt}<br/>
-                                    주요 의사 수: {result.maindoctorcnt}<br/>
-                                    코멘트 수: {result.comments.length}</p>
+                                    리뷰 수: {result.comments.length}</p>
+                                    산부인과 의사 수: {result.maindoctorcnt}<br/>
+                                    네이버 내 예약 여부: {result.reservation ? "가능" : "불가능"}<br/>
+                                    네이버 방문리뷰 수: {result.visitcnt}<br/>
+                                    네이버 블로그 리뷰 수: {result.blogcnt}<br/>
+                                    
+                                    
                         </ResultItem>
                     ))}
                 </ResultInnerContainer>
