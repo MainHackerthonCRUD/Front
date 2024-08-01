@@ -1,21 +1,19 @@
 import styled from "styled-components";
 import { ReviewComponentWrapper } from "./hospital_detail_review";
-import ReviewEle from "./reviewele";
+import UReviewEle from "./reviewele_user";
 
 export default function MypageReviews() {
   return (
     <ReviewComponentWrapper>
         <MyRevieswWrapper>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
+            <UReviewEle/>
+            <UReviewEle/>
+            <UReviewEle/>
+            <UReviewEle/>
+            <UReviewEle/>
+            <UReviewEle/>
+            <UReviewEle/>
+            <UReviewEle/>
         </MyRevieswWrapper>
     </ReviewComponentWrapper>
   )

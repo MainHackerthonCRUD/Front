@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function ReviewEle() {
+export default function HReviewEle() {
   return (
     <ReviewElement>
         <PostContent>
@@ -38,7 +38,7 @@ export default function ReviewEle() {
     );
 }
 
-const ReviewElement = styled.div`
+export const ReviewElement = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -50,7 +50,7 @@ const ReviewElement = styled.div`
     width: 100%;
 `;
 
-const PostInfo = styled.div`
+export const PostInfo = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -58,7 +58,7 @@ const PostInfo = styled.div`
     gap: 10px;
 `;
 
-const PostContent = styled.div`
+export const PostContent = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -66,11 +66,11 @@ const PostContent = styled.div`
     overflow: hidden;
 `;
 
-const PostTitle = styled.h3`
+export const PostTitle = styled.h3`
     font-size: 20px;
 `;
 
-const PostText = styled.span`
+export const PostText = styled.span`
     display: block;
     max-height: ${props => props.lines * 1.5}em;
     line-height: 1.5em;
@@ -80,7 +80,7 @@ const PostText = styled.span`
     padding-right: 0em;
 `;
 
-const ToDetailPost = styled.a`
+export const ToDetailPost = styled.a`
     position: absolute;
     right: 0;
     bottom: 0;
@@ -100,7 +100,7 @@ const ToDetailPost = styled.a`
     }
 `;
 
-const GoButton = styled.button`
+export const GoButton = styled.button`
     width: 100%;
     height: 35px;
     background-color: #FECD55; 
