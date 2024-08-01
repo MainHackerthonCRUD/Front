@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React, {useEffect, useState} from 'react';
 import { useParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import useAuthStore from "../store";
 import axios from "axios";
 
 export default function UserProfile(){

@@ -62,7 +62,8 @@ const router = createBrowserRouter([
         element:<RegionResults/>
       },
       {
-        path:"/kakaomap/detail",
+        path: "/hospital/:hospital_name"
+        //path:"/kakaomap/detail",
         //element:<MapDetail/>
         //element:<Detail/>
         element: <MergeDetail/>
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
         path: "/review/edit",
         element: <EditPage/>
       }
-      
+
     ]
   },
 ]);
