@@ -62,7 +62,7 @@ const router = createBrowserRouter([
         element:<RegionResults/>
       },
       {
-        path: "/hospital/:hospital_name"
+        path: "/hospital/:hospital_name",
         //path:"/kakaomap/detail",
         //element:<MapDetail/>
         //element:<Detail/>
