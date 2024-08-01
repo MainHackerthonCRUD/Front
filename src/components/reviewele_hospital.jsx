@@ -2,12 +2,18 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import api from "../api";
 import { useParams } from "react-router-dom";
-import { StarRating } from "./coutingstar";
+import { StarRating } from "./countingstar";
+import { useCookies } from 'react-cookie';
+import DeleteButton from "./review_delete";
+import { EditButton } from "./review_edit";
 
 export default function HReviewEle() {
 
     const [reviews, setReviews] = useState([]);
     const {hospitalid} = useParams();
+
+    const [cookies, setCookie] = useCookies(['nickname']);
+    let currentUserNickname = cookies.nickname;
 
     const getReviews = async () => {
         try {
@@ -31,6 +37,13 @@ export default function HReviewEle() {
         <PostContent>
             <PostTitle>{review.title}</PostTitle>
             <PostTitle>{review.id}</PostTitle>
+            {currentUserNickname === review.nickname &&
+            (
+                <MyPost>                        
+                    <DeleteButton/>
+                    <EditButton/>
+                </MyPost>
+            )}
         </PostContent>
         <PostInfo>
             <StarRating rating={review.star}/>
@@ -139,4 +152,10 @@ export const GoButton = styled.button`
         color: black;
         text-decoration-line: none;
     }
+`;
+
+const MyPost = styled.div`
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 5px;
 `;
