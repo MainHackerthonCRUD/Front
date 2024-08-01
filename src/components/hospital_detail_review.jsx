@@ -1,17 +1,12 @@
 import styled from "styled-components";
-import ReviewEle from "./reviewele";
+import HReviewEle from "./reviewele_hospital";
 
 export default function HospitalDetailReview() {
   return (
     <ReviewComponentWrapper>
         <h2>리뷰 목록</h2>
         <ReviewWrapper>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
-            <ReviewEle/>
+            <HReviewEle/>
         </ReviewWrapper>
     </ReviewComponentWrapper>
   );

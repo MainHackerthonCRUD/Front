@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ReviewEle from "../components/reviewele";
+import ReviewEle from "../components/reviewele_hospital";
 import MypageReviews from "../components/mypage_reviews";
 
 // 여기서도 컴포넌트로 불러오는걸로 합시당

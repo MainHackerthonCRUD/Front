@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api";
 import styled from "styled-components";
+import { StarRating } from "../components/coutingstar";
 
 export default function ReviewDetail() {
     const { hospitalid, postid } = useParams();
@@ -31,12 +32,12 @@ export default function ReviewDetail() {
     return (
         <div>
             <ReviewPageWrapper>
-                <h2>리뷰 상세</h2>
                 <ReviewItemWrapper>
-                    <h3>병원 이름|{detail.title}</h3>
+                    <h3>병원 이름 | {detail.title}</h3>
                 </ReviewItemWrapper>
                 <ReviewItemWrapper>
                     <div>
+                        <StarRating rating={detail.star}/>
                         <InfoHospital>{detail.star}</InfoHospital>
                     </div>
                     <div>
