@@ -7,11 +7,6 @@ export default function HospitalDetailReview() {
         <h2>리뷰 목록</h2>
         <ReviewWrapper>
             <HReviewEle/>
-            <HReviewEle/>
-            <HReviewEle/>
-            <HReviewEle/>
-            <HReviewEle/>
-            <HReviewEle/>
         </ReviewWrapper>
     </ReviewComponentWrapper>
   );
