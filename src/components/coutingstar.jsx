@@ -52,6 +52,28 @@ CountingStars.propTypes = {
 
 export default CountingStars;
 
+export const StarRating = ({ rating }) => {
+  return (
+      <StarRatingWrapper>
+          {[...Array(5)].map((star, index) => {
+              const starIndex = index + 1;
+              return (
+                  <span key={index}>
+                    {starIndex <= rating ? 
+                    (<FaStar size={20} color="#ffc107" />) 
+                    : 
+                    (<FaRegStar size={20} color="#e4e5e9" />)}
+                  </span>
+              );
+          })}
+      </StarRatingWrapper>
+  );
+};
+
+StarRating.propTypes = {
+  rating: PropTypes.number.isRequired,
+};
+
 const DivWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -88,6 +110,15 @@ const StarWrapper = styled.div`
 
 const StarIcon = styled.div`
   cursor: pointer;
-  color: ${props => (props.isFilled ? 'gold' : 'gray')};
+  color: ${props => (props.isFilled ? '#ffc107' : '#e4e5e9')};
   font-size: 24px;
+`;
+
+const StarRatingWrapper = styled.div`
+  display: flex;
+  gap: 5px;
+  
+  span {
+    color: ${props => (props.isFilled ? '#ffc107' : '#e4e5e9')};
+  }
 `;

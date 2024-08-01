@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import api from "../api";
+import { useParams } from "react-router-dom";
+import { StarRating } from "./coutingstar";
 
 export default function HReviewEle() {
 
     const [reviews, setReviews] = useState([]);
+    const {hospitalid} = useParams();
 
     const getReviews = async () => {
         try {
@@ -30,18 +33,24 @@ export default function HReviewEle() {
             <PostTitle>{review.id}</PostTitle>
         </PostContent>
         <PostInfo>
+            <StarRating rating={review.star}/>
+        </PostInfo>
+        <PostInfo>
             <span>{review.nickname}</span>
             <span>{review.created_at}</span>
-            <span>{review.star}</span>
         </PostInfo>
         <PostContent>                    
             <PostText lines={5}>
                 {review.body}
-                <ToDetailPost href="/"/> 
-                {/*위 링크는 리뷰 디테일(개별) api 되면 바꾸기*/}
+                <ToDetailPost href={`/1/${review.id}`}/> 
+                {/*위 링크는 병원 상세 되면 바꾸기*/}
             </PostText>
         </PostContent>
-        <GoButton><a href="/">자세히보기</a></GoButton>
+        <GoButton>
+            <a href={`/1/${review.id}`}>
+            자세히보기
+            </a>
+        </GoButton>
     </ReviewElement>  
     ))}
     </>
@@ -54,7 +63,7 @@ export const ReviewElement = styled.div`
     justify-content: flex-start;
     padding: 20px;
     align-items: center;
-    background-color: aliceblue;
+    background-color: #f7f7f7;
     border-radius: 10px;
     gap: 10px;
     width: 100%;
@@ -96,7 +105,7 @@ export const ToDetailPost = styled.a`
     bottom: 0;
     width: 1em;
     height: 1.5em;
-    background: linear-gradient(to right, transparent, aliceblue 30%);
+    background: linear-gradient(to right, transparent, #f7f7f7 30%);
     padding-left: 0.2em;
     text-decoration: none;
     color: inherit;
