@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import api from "../api";
 import { useParams } from "react-router-dom";
-import { StarRating } from "./coutingstar";
+import { StarRating } from "./countingstar";
 import { useCookies } from 'react-cookie';
 import DeleteButton from "./review_delete";
-import EditButton from "./review_edit";
+import { EditButton } from "./review_edit";
 
 export default function HReviewEle() {
 

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api";
 import styled from "styled-components";
-import { StarRating } from "../components/coutingstar";
+import { StarRating } from "../components/countingstar";
 import GoBackButton from "../components/gobackbutton";
 import DeleteButton from "../components/review_delete";
-import EditButton from "../components/review_edit";
+import { EditButton } from "../components/review_edit";
 import { useCookies } from 'react-cookie';
 
 export default function ReviewDetail() {

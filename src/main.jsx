@@ -17,6 +17,7 @@ import RegionResults from './pages/region_results';
 import MapDetail from './kakaomap/detail';
 import HospitalDetailReview from './components/hospital_detail_review';
 import MergeDetail from './pages/hospital_detailpage';
+import EditPage from './components/review_edit';
 
 const router = createBrowserRouter([
   {
@@ -67,8 +68,8 @@ const router = createBrowserRouter([
         element: <MergeDetail/>
       },
       {
-        path: "/test", //이거 링크는 리뷰 목록 컴포넌트 디자인 보려고 달아뒀어요!! 나중엔 지울듯
-        element: <HospitalDetailReview/>
+        path: "/review/edit",
+        element: <EditPage/>
       }
     ]
   },

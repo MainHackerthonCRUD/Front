@@ -4,7 +4,7 @@ import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import useAuthStore from "../store";
-import CoutingStar from "../components/coutingstar";
+import CountingStars from "../components/countingstar";
 
 export default function WriteNewReview() {
     const [cookies, setCookie] = useCookies(['access', 'nickname']);
@@ -93,7 +93,7 @@ export default function WriteNewReview() {
             </SelectTitle>
             <InputTitle placeholder="직접 제목 입력" onChange={handleTitleChange} value={title}/>
             <InputBody placeholder="리뷰 작성" onChange={handleBodyChange} value={body}/>
-            <CoutingStar value={star} onChange={handleStarChange}></CoutingStar>
+            <CountingStars value={star} onChange={handleStarChange}></CountingStars>
             <SubmitButton type="submit">작성</SubmitButton>
         </InfoForm>
         </ReviewBoxWrapper>
@@ -101,7 +101,7 @@ export default function WriteNewReview() {
   )
 }
 
-const ReviewBoxWrapper = styled.div`
+export const ReviewBoxWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -114,7 +114,7 @@ const ReviewBoxWrapper = styled.div`
     padding: 20px 20px 20px 20px;
 `;
 
-const InfoForm = styled.form`
+export const InfoForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -122,7 +122,7 @@ const InfoForm = styled.form`
   gap: 10px;
 `;
 
-const InputTitle = styled.input`
+export const InputTitle = styled.input`
     width: 100%;
     padding: 10px;
     border: 1px solid #d9d9d9;
@@ -144,7 +144,7 @@ const SelectTitle = styled.select`
     }
 `;
 
-const InputBody = styled.textarea`
+export const InputBody = styled.textarea`
     width: 100%;
     height: 70px;
     padding: 10px;
@@ -154,7 +154,7 @@ const InputBody = styled.textarea`
     outline: none;
 `;
 
-const SubmitButton = styled.button`
+export const SubmitButton = styled.button`
   width: 100%;
   padding: 10px;
   border: 1px solid #d9d9d9;
