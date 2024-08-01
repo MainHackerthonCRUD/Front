@@ -50,19 +50,9 @@ export default function UserProfile() {
       <p>프로필 컴포넌트 실험 중</p>
       <div className="profile-container">
         <h1>{profile.nickname}'s Profile</h1>
-        <p>Number of Comments: {profile.comments_count}</p>
-        <p>Average Rating: {profile.star_average} stars</p>
-        <div className="comments">
-          {profile.comments.map(comment => (
-            <div key={comment.id} className="comment">
-              <h3>{comment.title}</h3>
-              <p>{comment.body}</p>
-              <p>Rating: {comment.star} stars</p>
-              <p>Date: {comment.created_at}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+        <p>리뷰 수: {profile.comments_count}</p>
+        <p>평균평점: {profile.star_average} 점</p>
+    </div>
     </>
   );
 }
