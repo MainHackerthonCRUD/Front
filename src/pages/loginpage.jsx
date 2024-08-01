@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [errorMessage, setErrorMessage] = useState('');
 
   const { login } = useAuthStore();
-  const [cookies, setCookie] = useCookies(['access', 'nickname']);
+  const [cookies, setCookie] = useCookies(['access', 'nickname', 'usernum']);
 
   const handleUsernameChange = (e) => {
     setUserName(e.target.value);
@@ -33,7 +33,8 @@ export default function LoginPage() {
       console.log(response.data);
       login(setCookie);
       setCookie('access', response.data.access, { path: '/' }); // 쿠키에 access 토큰 저장
-      setCookie('nickname', response.data.user.nickname, { path: '/' }); // 쿠키에 사용자 이름 저장
+      setCookie('nickname', response.data.user.nickname, { path: '/' }); // 쿠키에 닉네임 저장
+      setCookie('pk', response.data.user.id, {path: '/'}); // 유저 아이디 저장 - 리뷰
       alert('로그인 되었습니다.')
       navigate('/');
       console.log(response.data);
