@@ -87,35 +87,40 @@ export default function MapDetail(){
 }
 
 const InformContainer = styled.div`
-  background-color: #f0f0f0e7;
-  width: 80%;
-  height: 100%;
-  border-radius: 5%;
-  text-align: center;
-  align-items: center; 
-`
+    background-color: #f0f0f0e7;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 5%;
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+`;
+
 const TextContainer = styled.div`
-  width: 60%;
-  height:20%;
-  text-align: center;
-  align-items: center;
-  `
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+`;
+
 const NameText = styled.h1`
-  font-size: 30px;
-  font-weight: 500;
-  margin-top: 30px;
-  margin-bottom: 10px;
-`
+    font-size: 24px;
+    font-weight: 500;
+    margin: 10px 0;
+`;
 
 const InformText = styled.p`
-  font-size : 15px;
-  margin: 5px;
-`
+    font-size: 14px;
+    margin: 5px 0;
+`;
 
 const MapContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
 `;
