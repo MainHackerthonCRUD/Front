@@ -70,6 +70,7 @@ const router = createBrowserRouter([
         path: "/test", //이거 링크는 리뷰 목록 컴포넌트 디자인 보려고 달아뒀어요!! 나중엔 지울듯
         element: <HospitalDetailReview/>
       }
+      
     ]
   },
 ]);
