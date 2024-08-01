@@ -2,15 +2,22 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api";
 import styled from "styled-components";
-import { StarRating } from "../components/coutingstar";
+import { StarRating } from "../components/countingstar";
+import GoBackButton from "../components/gobackbutton";
+import DeleteButton from "../components/review_delete";
+import { EditButton } from "../components/review_edit";
+import { useCookies } from 'react-cookie';
 
 export default function ReviewDetail() {
     const { hospitalid, postid } = useParams();
     const [detail, setDetail] = useState(null);
     const [error, setError] = useState(null);
 
+    const [cookies, setCookie] = useCookies(['nickname']);
+    let currentUserNickname = cookies.nickname;
+
     useEffect(() => {
-        const Detail = async () => {
+        const GetDetail = async () => {
             try {
                 const res = await api.get(`/board/review/${hospitalid}/${postid}`);
                 setDetail(res.data);
@@ -18,7 +25,7 @@ export default function ReviewDetail() {
                 setError(error.message);
             }
         };
-        Detail();
+        GetDetail();
     }, [hospitalid, postid]);
 
     if (error) {
@@ -33,20 +40,29 @@ export default function ReviewDetail() {
         <div>
             <ReviewPageWrapper>
                 <ReviewItemWrapper>
-                    <h3>병원 이름 | {detail.title}</h3>
+                    <h3>{detail.title}</h3>
+                    <ReviewModDiv>
+                        <StarRating rating={detail.star}/>
+                        {currentUserNickname === detail.nickname &&
+                        (
+                            <div>
+                                <DeleteButton/>
+                                <EditButton/>
+                            </div>
+                        )}
+                    </ReviewModDiv>
                 </ReviewItemWrapper>
                 <ReviewItemWrapper>
-                    <div>
-                        <StarRating rating={detail.star}/>
-                        <InfoHospital>{detail.star}</InfoHospital>
-                    </div>
                     <div>
                         <InfoHospital>{detail.nickname}</InfoHospital>
                         <InfoHospital>{detail.created_at}</InfoHospital>
                     </div>
+                    <div>
+                    </div>
                     <p>{detail.body}</p>
                 </ReviewItemWrapper>
             </ReviewPageWrapper>
+            <GoBackButton/>
         </div>
     );
 }
@@ -83,9 +99,17 @@ const ReviewItemWrapper = styled.div`
   div {
     display: flex;
     gap: 10px;
+    margin-bottom: 5px;
   }
 `;
 
 const InfoHospital = styled.span`
-  font-size : 13px;
+  font-size : 15px;
+`;
+
+const ReviewModDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
 `;
