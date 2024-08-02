@@ -33,6 +33,7 @@ export default function EditPage () {
               body: res.data.body,
               star: res.data.star,
             })
+            console.log(res.data);
         } catch (error) {
             setError(error.message);
         }
@@ -46,6 +47,7 @@ const handlePostChange = (e) => {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
+  console.log(rewriteData); // 로그 추가
   try {
     const res = await api.put(`/board/review/${hospitalid}/${postid}`, rewriteData, {
     headers: {
@@ -64,11 +66,11 @@ const handleSubmit = async (e) => {
   return (
     <div>
         <ReviewBoxWrapper>
-        <h2>리뷰작성</h2>
+        <h2>리뷰 수정</h2>
         <InfoForm onSubmit={handleSubmit}>
-            <InputTitle placeholder="직접 제목 입력" onChange={handlePostChange} />
-            <InputBody placeholder="리뷰 작성" onChange={handlePostChange} />
-            <CountingStars onChange={handlePostChange}></CountingStars>
+            <InputTitle placeholder="직접 제목 입력" name="title" value={rewriteData.title} onChange={handlePostChange} />
+            <InputBody placeholder="리뷰 작성" name="body" value={rewriteData.body} onChange={handlePostChange} />
+            <CountingStars value={rewriteData.star} onChange={handlePostChange}></CountingStars>
             <SubmitButton type="submit">작성</SubmitButton>
         </InfoForm>
         </ReviewBoxWrapper>
@@ -79,9 +81,10 @@ const handleSubmit = async (e) => {
 export function EditButton() {
 
   const navigate = useNavigate();
+  const {hospitalid, postid} = useParams();
 
   const navToEdit = () => {
-    navigate('/review/edit');
+    navigate(`/edit/${hospitalid}/${postid}`);
   }
   return (
     <div>

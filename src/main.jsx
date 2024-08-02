@@ -69,7 +69,7 @@ const router = createBrowserRouter([
         element: <MergeDetail/>
       },
       {
-        path: "/review/edit",
+        path: "/edit/:hospitalid/:postid",
         element: <EditPage/>
       }
 
