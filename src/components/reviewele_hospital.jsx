@@ -4,12 +4,13 @@ import api from "../api";
 import { useParams } from "react-router-dom";
 import { StarRating } from "./countingstar";
 import { useCookies } from 'react-cookie';
-import DeleteButton from "./review_delete";
+import DeleteButton, {DeleteConfirm} from "./review_delete";
 import { EditButton } from "./review_edit";
 
 export default function HReviewEle() {
 
     const [reviews, setReviews] = useState([]);
+    const [deletingReviewId, setDeletingReviewId] = useState(null);
     const {hospitalid} = useParams();
 
     const [cookies, setCookie] = useCookies(['nickname']);
@@ -30,6 +31,18 @@ export default function HReviewEle() {
         getReviews();
     }, []);
 
+    const handleDelete = (id) => {
+        setDeletingReviewId(id);
+    };
+
+    const handleDeleteOk = () => {
+        console.log(`Deleting review with id: ${deletingReviewId}`);
+    }
+
+    const handleCancelDelete = () => {
+        setDeletingReviewId(null);
+      };
+
   return (
     <>
     {reviews.map((review) => (
@@ -40,7 +53,7 @@ export default function HReviewEle() {
             {currentUserNickname === review.nickname &&
             (
                 <MyPost>                        
-                    <DeleteButton/>
+                    <DeleteButton onDelete={() => handleDelete(review.id)}/>
                     <EditButton hospitalid={1} postid={review.id}/>
                 </MyPost>
             )}
@@ -64,6 +77,12 @@ export default function HReviewEle() {
             자세히보기
             </a>
         </GoButton>
+        {deletingReviewId === review.id && (
+            <DeleteConfirm
+              onConfirm={handleDeleteOk}
+              onCancel={handleCancelDelete}
+            />
+          )}
     </ReviewElement>  
     ))}
     </>

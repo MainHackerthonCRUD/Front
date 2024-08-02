@@ -44,7 +44,7 @@ export default function UReviewEle() {
                 <PostTitle>{review.id}</PostTitle>
                 <MyPost>                        
                     <DeleteButton/>
-                    <EditButton/>
+                    <EditButton hospitalid={1} postid={review.id}/>
                 </MyPost>
             </PostContent>
             <PostInfo>
