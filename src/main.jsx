@@ -18,6 +18,7 @@ import MapDetail from './kakaomap/detail';
 import HospitalDetailReview from './components/hospital_detail_review';
 import MergeDetail from './pages/hospital_detailpage';
 import EditPage from './components/review_edit';
+import { DeleteConfirm } from './components/review_delete';
 
 const router = createBrowserRouter([
   {
@@ -69,8 +70,12 @@ const router = createBrowserRouter([
         element: <MergeDetail/>
       },
       {
-        path: "/review/edit",
+        path: "/edit/:hospitalid/:postid",
         element: <EditPage/>
+      },
+      {
+        path: "/del/:hospitalid/:postid",
+        element: <DeleteConfirm/>
       }
 
     ]
