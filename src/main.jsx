@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <SignupPage />
       },
       {
-        path: "writereview",
+        path: "review/write/:hospitalid",
         element: <WriteNewReview/>
       },
       {

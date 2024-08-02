@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function MainWrite(){
     const navigate = useNavigate();
+    const {hospitalid} = useParams(); //나중에 병원 id로 연결
     const handleWriteClick = () => {
-        navigate("/writereview");
+        navigate("/review/write/:hospitalid");
     };
 
     return(
