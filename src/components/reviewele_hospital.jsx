@@ -13,8 +13,9 @@ export default function HReviewEle() {
     const [deletingReviewId, setDeletingReviewId] = useState(null);
     const {hospitalid} = useParams();
 
-    const [cookies, setCookie] = useCookies(['nickname']);
+    const [cookies, setCookie] = useCookies(['nickname', 'access']);
     let currentUserNickname = cookies.nickname;
+    let token = cookies.access;
 
     const getReviews = async () => {
         try {
@@ -35,8 +36,21 @@ export default function HReviewEle() {
         setDeletingReviewId(id);
     };
 
-    const handleDeleteOk = () => {
-        console.log(`Deleting review with id: ${deletingReviewId}`);
+    const handleDeleteOk = async () => {
+        try {
+            // 아래 1도 hospitalid로 변경해야됨
+            const res = await api.delete(`/board/review/1/${deletingReviewId}/`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log(res.data);
+            alert('리뷰를 삭제하였습니다.');
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const handleCancelDelete = () => {
