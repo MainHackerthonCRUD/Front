@@ -49,7 +49,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   console.log(rewriteData); // 로그 추가
   try {
-    const res = await api.put(`/board/review/${hospitalid}/${postid}`, rewriteData, {
+    const res = await api.put(`/board/review/${hospitalid}/${postid}/`, rewriteData, {
     headers: {
         Authorization: `Bearer ${auth}`,
         'Content-Type': 'application/json'
@@ -78,10 +78,9 @@ const handleSubmit = async (e) => {
   );
 }
 
-export function EditButton() {
+export function EditButton({hospitalid, postid}) {
 
   const navigate = useNavigate();
-  const {hospitalid, postid} = useParams();
 
   const navToEdit = () => {
     navigate(`/edit/${hospitalid}/${postid}`);

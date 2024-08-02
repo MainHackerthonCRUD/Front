@@ -7,6 +7,7 @@ import GoBackButton from "../components/gobackbutton";
 import DeleteButton from "../components/review_delete";
 import { EditButton } from "../components/review_edit";
 import { useCookies } from 'react-cookie';
+import { MyPost } from "../components/reviewele_hospital";
 
 export default function ReviewDetail() {
     const { hospitalid, postid } = useParams();
@@ -45,10 +46,10 @@ export default function ReviewDetail() {
                         <StarRating rating={detail.star}/>
                         {currentUserNickname === detail.nickname &&
                         (
-                            <div>
+                            <MyPost>
                                 <DeleteButton/>
-                                <EditButton/>
-                            </div>
+                                <EditButton hospitalid={hospitalid} postid={postid}/>
+                            </MyPost>
                         )}
                     </ReviewModDiv>
                 </ReviewItemWrapper>

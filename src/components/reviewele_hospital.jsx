@@ -41,7 +41,7 @@ export default function HReviewEle() {
             (
                 <MyPost>                        
                     <DeleteButton/>
-                    <EditButton/>
+                    <EditButton hospitalid={1} postid={review.id}/>
                 </MyPost>
             )}
         </PostContent>
