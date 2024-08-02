@@ -1,12 +1,12 @@
-import { ReviewElement, PostContent, PostTitle, PostInfo, PostText, GoButton, ToDetailPost } from "./reviewele_hospital";
+import { ReviewElement, PostContent, PostTitle, PostInfo, PostText } from "./reviewele_hospital";
 import { useParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useState, useEffect } from "react";
 import api from "../api";
 import DeleteButton from "./review_delete";
-import { EditButton } from "./review_edit";
 import { MyPost } from "./reviewele_hospital";
 import { StarRating } from "./countingstar";
+import { MyEditButton } from "./mypage_review_edit";
 
 export default function UReviewEle() {
 
@@ -44,7 +44,7 @@ export default function UReviewEle() {
                 <PostTitle>{review.id}</PostTitle>
                 <MyPost>                        
                     <DeleteButton/>
-                    <EditButton hospitalid={1} postid={review.id}/>
+                    <MyEditButton postid={review.id}/>
                 </MyPost>
             </PostContent>
             <PostInfo>
@@ -57,15 +57,8 @@ export default function UReviewEle() {
             <PostContent>                    
                 <PostText lines={5}>
                     {review.body}
-                    <ToDetailPost href={`/1/${review.id}`}/> 
-                    {/*위 링크는 병원 상세 되면 바꾸기*/}
                 </PostText>
             </PostContent>
-            <GoButton>
-                <a href={`/1/${review.id}`}>
-                자세히보기
-                </a>
-            </GoButton>
         </ReviewElement>  
     ))}
     </>

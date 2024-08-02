@@ -89,5 +89,5 @@ export function EditButton({hospitalid, postid}) {
     <div>
       <span onClick={() => navToEdit()}>수정</span>
     </div>
-  )
+  );
 }
