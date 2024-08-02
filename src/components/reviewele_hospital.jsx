@@ -154,7 +154,7 @@ export const GoButton = styled.button`
     }
 `;
 
-const MyPost = styled.div`
+export const MyPost = styled.div`
     display: flex;
     flex-direction: row-reverse;
     gap: 5px;

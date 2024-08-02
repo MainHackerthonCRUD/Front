@@ -7,13 +7,6 @@ export default function MypageReviews() {
     <ReviewComponentWrapper>
         <MyRevieswWrapper>
             <UReviewEle/>
-            <UReviewEle/>
-            <UReviewEle/>
-            <UReviewEle/>
-            <UReviewEle/>
-            <UReviewEle/>
-            <UReviewEle/>
-            <UReviewEle/>
         </MyRevieswWrapper>
     </ReviewComponentWrapper>
   )
