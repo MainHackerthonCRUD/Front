@@ -4,16 +4,18 @@ import api from "../api";
 import { useParams } from "react-router-dom";
 import { StarRating } from "./countingstar";
 import { useCookies } from 'react-cookie';
-import DeleteButton from "./review_delete";
+import DeleteButton, {DeleteConfirm} from "./review_delete";
 import { EditButton } from "./review_edit";
 
 export default function HReviewEle() {
 
     const [reviews, setReviews] = useState([]);
+    const [deletingReviewId, setDeletingReviewId] = useState(null);
     const {hospitalid} = useParams();
 
-    const [cookies, setCookie] = useCookies(['nickname']);
+    const [cookies, setCookie] = useCookies(['nickname', 'access']);
     let currentUserNickname = cookies.nickname;
+    let token = cookies.access;
 
     const getReviews = async () => {
         try {
@@ -30,6 +32,31 @@ export default function HReviewEle() {
         getReviews();
     }, []);
 
+    const handleDelete = (id) => {
+        setDeletingReviewId(id);
+    };
+
+    const handleDeleteOk = async () => {
+        try {
+            // 아래 1도 hospitalid로 변경해야됨
+            const res = await api.delete(`/board/review/1/${deletingReviewId}/`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log(res.data);
+            alert('리뷰를 삭제하였습니다.');
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const handleCancelDelete = () => {
+        setDeletingReviewId(null);
+      };
+
   return (
     <>
     {reviews.map((review) => (
@@ -40,7 +67,7 @@ export default function HReviewEle() {
             {currentUserNickname === review.nickname &&
             (
                 <MyPost>                        
-                    <DeleteButton/>
+                    <DeleteButton onDelete={() => handleDelete(review.id)}/>
                     <EditButton hospitalid={1} postid={review.id}/>
                 </MyPost>
             )}
@@ -64,6 +91,12 @@ export default function HReviewEle() {
             자세히보기
             </a>
         </GoButton>
+        {deletingReviewId === review.id && (
+            <DeleteConfirm
+              onConfirm={handleDeleteOk}
+              onCancel={handleCancelDelete}
+            />
+          )}
     </ReviewElement>  
     ))}
     </>
