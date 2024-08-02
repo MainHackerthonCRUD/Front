@@ -38,11 +38,11 @@ const router = createBrowserRouter([
         element: <SignupPage />
       },
       {
-        path: "writereview",
+        path: "review/write/:hospitalid",
         element: <WriteNewReview/>
       },
       {
-        path: "/:hospitalid/:postid",
+        path: "review/:hospitalid/:postid",
         element: <ReviewDetail/>
       },
       {
