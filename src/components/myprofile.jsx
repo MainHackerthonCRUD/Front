@@ -47,12 +47,50 @@ export default function UserProfile() {
 
   return (
     <>
-      <p>프로필 컴포넌트 실험 중</p>
-      <div className="profile-container">
-        <h1>{profile.nickname}'s Profile</h1>
-        <p>리뷰 수: {profile.comments_count}</p>
-        <p>평균평점: {profile.star_average} 점</p>
-    </div>
+      <ProfileContainer>
+        <NicknameContainer>
+        <NicknameFont>{profile.nickname}</NicknameFont>
+        </NicknameContainer>
+
+        <componentContainer>
+        <ProfileFont>리뷰 수: {profile.comments_count}</ProfileFont>
+        <ProfileFont>평균평점: {profile.star_average} 점</ProfileFont>
+        </componentContainer>
+    </ProfileContainer>
     </>
   );
 }
+
+
+const ProfileContainer = styled.div`
+  display: flex;
+  background-color: #ececec;
+  border-radius: 5px;
+  height: 300px;
+  width: 500px;
+
+  
+`
+
+const NicknameContainer = styled.div`
+  display: flex;
+  justify-content: center; //display flex면 justify 아니면 text-align
+  align-items: center;
+  background-color: #FECD55;
+  border-radius: 10px;
+  margin: 30px;
+  padding : 30px;
+  height: 80px;
+  width: 200px;
+  `
+const NicknameFont = styled.h1`
+  color : black;
+
+  `
+
+const componentContainer = styled.div`
+`
+const ProfileFont = styled.p`
+  font-size: 20px;
+  font-weight: 600;
+`
