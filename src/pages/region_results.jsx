@@ -10,7 +10,7 @@ export default function RegionResults() {
 
     const handleClickResult = (review) => {
         //navigate(`/review/${review.id}`)
-        navigate('/kakaomap/detail')
+        navigate('/hospital/:hospital_name')
       };
 
     return (

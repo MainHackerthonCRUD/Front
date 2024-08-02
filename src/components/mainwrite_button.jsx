@@ -9,26 +9,23 @@ export default function MainWrite(){
 
     return(
         <WriteButtonContainer>
-            
-        <ORText>OR</ORText>
-
         <ReviewButton onClick = {() => handleWriteClick()}>바로 리뷰쓰기 </ReviewButton>
         </WriteButtonContainer>
-
     );
 
 }
 
 const WriteButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    margin: 20px;
     text-align: center;
-
-    `
+    margin: 20px 0px 30px 0px;
+`;
 
 const ReviewButton = styled.button`
 
-    width: 200px;
+    width: 650px;
     height: 80px;
     cursor: pointer;
     border: none;
@@ -47,15 +44,9 @@ const ReviewButton = styled.button`
         font-weight: 800;
     }
     
-`
+`;
 
 const DividerContainer = styled.div`
     margin: 40px 0;
 
-`
-
-const ORText = styled.p`
-    font-weight: 600;
-    font-size: 25px;
-    margin : 10px 0 20px;
 `
