@@ -10,7 +10,6 @@ export default function EditPage () {
 
   const navigate = useNavigate();
 
-  const { isAuthenticated } = useAuthStore();
   const [cookies, setCookie] = useCookies(['access']);
   let auth = cookies.access;
 

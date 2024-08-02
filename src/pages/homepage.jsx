@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import SearchBox from "./mainsearch";
 import RegionBox from "./regionbutton";
-import MainWrite from "./mainwrite_button";
+import MainWrite from "../components/mainwrite_button";
 
 export default function HomePage() {
 
@@ -15,6 +15,7 @@ export default function HomePage() {
       <MainContainer>
       <RegionBox/>
       </MainContainer>
+      <ORText>OR</ORText>
       <MainWrite/>
       
       </>
@@ -48,4 +49,8 @@ const Logo  = styled.h1`
   align-items: center;
   gap: 10px;
 `
-  
+
+const ORText = styled.p`
+    font-weight: 600;
+    font-size: 25px;
+`;
