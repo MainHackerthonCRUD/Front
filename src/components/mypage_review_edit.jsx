@@ -11,7 +11,7 @@ export default function MypageReviewEdit() {
     const [cookies, setCookie] = useCookies(['access']);
     let auth = cookies.access;
   
-    const { hospitalid, postid } = useParams();
+    const { postid } = useParams();
     const [post, setPost] = useState(null);
     const [error, setError] = useState(null);
     const [rewriteData, setRewriteData] = useState(
