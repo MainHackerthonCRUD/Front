@@ -3,15 +3,32 @@ import MapDetail from "../kakaomap/detail";
 import HospitalDetailReview from "../components/hospital_detail_review";
 import MainWrite from "../components/mainwrite_button";
 import MapInform from "../components/map_information";
+import { useState, useEffect } from "react";
 
 export default function MergeDetail(){
+
+    const [hospitalId, setHospitalId] = useState(null);
+
+    useEffect(() => {
+        console.log("hospitalId changed:", hospitalId);
+      }, [hospitalId]);
 
     return(
         <>
         {/*<MapDetail/>*/}
-        <MapInform/>
-        <MainWrite/>
-        <HospitalDetailReview/>
+        <MapInform setHospitalId={setHospitalId}/>
+        {hospitalId ? 
+            (
+                <>
+                <MainWrite hospitalId={hospitalId} />
+                <HospitalDetailReview hospitalId={hospitalId} />
+                </> 
+            ) 
+            : 
+            (
+                <p>로딩 중...</p>
+            )
+        }
         </>
     );
 }
