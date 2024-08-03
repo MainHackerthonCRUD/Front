@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ReviewBoxWrapper, InfoForm, InputTitle, InputBody, SubmitButton } from "../pages/review_write_page";
 import CountingStars from "./countingstar";
 import { useCookies } from "react-cookie";
+import { HostpitalName } from "./review_edit";
 
 export default function MypageReviewEdit() {
     const navigate = useNavigate();
@@ -12,6 +13,7 @@ export default function MypageReviewEdit() {
     let auth = cookies.access;
   
     const { postid } = useParams();
+    const [hospital_name, setHospital_name] = useState("");
     const [post, setPost] = useState(null);
     const [error, setError] = useState(null);
     const [rewriteData, setRewriteData] = useState(
@@ -26,6 +28,7 @@ export default function MypageReviewEdit() {
           try {
               const res = await api.get(`/board/review/${postid}`);
               setPost(res.data);
+              setHospital_name(res.data.hospital_name);
               setRewriteData({
                 title: res.data.title,
                 body: res.data.body,
@@ -64,7 +67,7 @@ export default function MypageReviewEdit() {
     return (
       <div>
           <ReviewBoxWrapper>
-          <h2>리뷰 수정</h2>
+          <HostpitalName href={`/hospital/${hospital_name}`}>{hospital_name}</HostpitalName>
           <InfoForm onSubmit={handleSubmit}>
               <InputTitle placeholder="직접 제목 입력" name="title" value={rewriteData.title} onChange={handlePostChange} />
               <InputBody placeholder="리뷰 작성" name="body" value={rewriteData.body} onChange={handlePostChange} />

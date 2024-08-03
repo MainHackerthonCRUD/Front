@@ -1,7 +1,7 @@
+import styled from "styled-components";
 import api from "../api";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useAuthStore from "../store";
 import { ReviewBoxWrapper, InfoForm, InputTitle, InputBody, SubmitButton } from "../pages/review_write_page";
 import CountingStars from "./countingstar";
 import { useCookies } from "react-cookie";
@@ -14,6 +14,7 @@ export default function EditPage () {
   let auth = cookies.access;
 
   const { hospitalid, postid } = useParams();
+  const [hospital_name, setHospital_name] = useState("");
   const [post, setPost] = useState(null);
   const [error, setError] = useState(null);
   const [rewriteData, setRewriteData] = useState(
@@ -28,6 +29,7 @@ export default function EditPage () {
         try {
             const res = await api.get(`/board/review/${hospitalid}/${postid}`);
             setPost(res.data);
+            setHospital_name(res.data.hospital_name);
             setRewriteData({
               title: res.data.title,
               body: res.data.body,
@@ -66,7 +68,7 @@ const handleSubmit = async (e) => {
   return (
     <div>
         <ReviewBoxWrapper>
-        <h2>리뷰 수정</h2>
+        <HostpitalName href={`/hospital/${hospital_name}`}>{hospital_name}</HostpitalName>
         <InfoForm onSubmit={handleSubmit}>
             <InputTitle placeholder="직접 제목 입력" name="title" value={rewriteData.title} onChange={handlePostChange} />
             <InputBody placeholder="리뷰 작성" name="body" value={rewriteData.body} onChange={handlePostChange} />
@@ -91,3 +93,16 @@ export function EditButton({hospitalid, postid}) {
     </div>
   );
 }
+
+export const HostpitalName = styled.a`
+  font-size: 24px;
+  font-weight: 600;
+  color: black;    
+  text-decoration-line: none;
+  padding: 0 10px 0 0;
+  margin-bottom: 15px;
+
+  &:hover {
+    color:  #FFAA00;
+  }
+`;

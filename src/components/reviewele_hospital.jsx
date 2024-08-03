@@ -5,6 +5,7 @@ import { StarRating } from "./countingstar";
 import { useCookies } from 'react-cookie';
 import DeleteButton, {DeleteConfirm} from "./review_delete";
 import { EditButton } from "./review_edit";
+import GoBackButton from "./gobackbutton";
 
 export default function HReviewEle({ hospitalId }) {
 
@@ -58,7 +59,12 @@ export default function HReviewEle({ hospitalId }) {
   return (
     <>
     {reviews.length === 0 ? (
-        <p>리뷰가 없습니다.</p>
+        <NoReview>
+            <h3>아직 작성된 리뷰가 없습니다.</h3>
+            <div>
+                <GoBackButton/>
+            </div>
+        </NoReview>
     ) : (
         reviews.map((review) => (
             <ReviewElement key={review.id}>
@@ -103,6 +109,24 @@ export default function HReviewEle({ hospitalId }) {
     );
 }
 
+export const NoReview = styled.div`
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    gap: 10px;
+
+    div {
+        width: 350px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+`;
 export const ReviewElement = styled.div`
     display: flex;
     flex-direction: column;
