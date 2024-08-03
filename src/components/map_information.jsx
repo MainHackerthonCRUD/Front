@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
-export default function MapInform() {
-  const { hospital_name } = useParams(); // URL에서 병원 이름 가져오기
+export default function MapInform({setHospitalId}) {
+  const { hospital_name } = useParams(); // URL에서 병원 이름을 가져옵니다.
   const [hospitalInfo, setHospitalInfo] = useState(null);
 
   useEffect(() => {
@@ -14,6 +14,8 @@ export default function MapInform() {
         const data = response.data;
         if (data.length > 0) {
           setHospitalInfo(data[0]); // 첫 번째 요소를 상태에 저장
+          setHospitalId(data[0].id); // 병원 아이디 부모 컴포넌트로 전달
+          //console.log("Hospital ID set to:", data[0].id); 
         }
       } catch (error) {
         console.error("Error fetching hospital data:", error);
@@ -21,7 +23,7 @@ export default function MapInform() {
     };
 
     fetchHospitalInfo();
-  }, [hospital_name]);
+  }, [hospital_name, setHospitalId]);
 
   if (!hospitalInfo) {
     return <p>로딩 중...</p>;

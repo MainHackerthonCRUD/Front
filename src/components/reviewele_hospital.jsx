@@ -1,26 +1,24 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import api from "../api";
-import { useParams } from "react-router-dom";
 import { StarRating } from "./countingstar";
 import { useCookies } from 'react-cookie';
 import DeleteButton, {DeleteConfirm} from "./review_delete";
 import { EditButton } from "./review_edit";
 
-export default function HReviewEle() {
+export default function HReviewEle({ hospitalId }) {
 
     const [reviews, setReviews] = useState([]);
     const [deletingReviewId, setDeletingReviewId] = useState(null);
-    const {hospitalid} = useParams();
 
     const [cookies, setCookie] = useCookies(['nickname', 'access']);
     let currentUserNickname = cookies.nickname;
     let token = cookies.access;
 
     const getReviews = async () => {
+        if (!hospitalId) return;
         try {
-            // 아래 hospital_id는 나중에 useParam으로 바꾸기
-            const res = await api.get(`board/1/commentget/`)
+            const res = await api.get(`board/${hospitalId}/commentget/`)
             setReviews(res.data);
             console.log(res.data);
         } catch (error) {
@@ -29,8 +27,9 @@ export default function HReviewEle() {
     }
 
     useEffect(() => {
+        console.log("hospitalId changed:", hospitalId);
         getReviews();
-    }, []);
+    }, [hospitalId]);
 
     const handleDelete = (id) => {
         setDeletingReviewId(id);
@@ -38,8 +37,7 @@ export default function HReviewEle() {
 
     const handleDeleteOk = async () => {
         try {
-            // 아래 1도 hospitalid로 변경해야됨
-            const res = await api.delete(`/board/review/1/${deletingReviewId}/`, {
+            const res = await api.delete(`/board/review/${hospitalId}/${deletingReviewId}/`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json'
@@ -59,46 +57,49 @@ export default function HReviewEle() {
 
   return (
     <>
-    {reviews.map((review) => (
-        <ReviewElement key={review.id}>
-        <PostContent>
-            <PostTitle>{review.title}</PostTitle>
-            <PostTitle>{review.id}</PostTitle>
-            {currentUserNickname === review.nickname &&
-            (
-                <MyPost>                        
-                    <DeleteButton onDelete={() => handleDelete(review.id)}/>
-                    <EditButton hospitalid={1} postid={review.id}/>
-                </MyPost>
+    {reviews.length === 0 ? (
+        <p>리뷰가 없습니다.</p>
+    ) : (
+        reviews.map((review) => (
+            <ReviewElement key={review.id}>
+            <PostContent>
+                <PostTitle>{review.title}</PostTitle>
+                <PostTitle>{review.id}</PostTitle>
+                {currentUserNickname === review.nickname &&
+                (
+                    <MyPost>                        
+                        <DeleteButton onDelete={() => handleDelete(review.id)}/>
+                        <EditButton hospitalid={hospitalId} postid={review.id}/>
+                    </MyPost>
+                )}
+            </PostContent>
+            <PostInfo>
+                <StarRating rating={review.star}/>
+            </PostInfo>
+            <PostInfo>
+                <span>{review.nickname}</span>
+                <span>{review.created_at}</span>
+            </PostInfo>
+            <PostContent>                    
+                <PostText lines={5}>
+                    {review.body}
+                    <ToDetailPost href={`/${hospitalId}/${review.id}`}/> 
+                </PostText>
+            </PostContent>
+            <GoButton>
+                <a href={`/${hospitalId}/${review.id}`}>
+                자세히보기
+                </a>
+            </GoButton>
+            {deletingReviewId === review.id && (
+                <DeleteConfirm
+                  onConfirm={handleDeleteOk}
+                  onCancel={handleCancelDelete}
+                />
             )}
-        </PostContent>
-        <PostInfo>
-            <StarRating rating={review.star}/>
-        </PostInfo>
-        <PostInfo>
-            <span>{review.nickname}</span>
-            <span>{review.created_at}</span>
-        </PostInfo>
-        <PostContent>                    
-            <PostText lines={5}>
-                {review.body}
-                <ToDetailPost href={`/1/${review.id}`}/> 
-                {/*위 링크는 병원 상세 되면 바꾸기*/}
-            </PostText>
-        </PostContent>
-        <GoButton>
-            <a href={`/1/${review.id}`}>
-            자세히보기
-            </a>
-        </GoButton>
-        {deletingReviewId === review.id && (
-            <DeleteConfirm
-              onConfirm={handleDeleteOk}
-              onCancel={handleCancelDelete}
-            />
-          )}
-    </ReviewElement>  
-    ))}
+        </ReviewElement>  
+        ))
+    )}
     </>
     );
 }
