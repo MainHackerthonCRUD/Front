@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import api from "../api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import useAuthStore from "../store";
 import CountingStars from "../components/countingstar";
 
 export default function WriteNewReview() {
+    const { hospitalid } = useParams();
     const [cookies, setCookie] = useCookies(['access', 'nickname']);
     const { isAuthenticated } = useAuthStore();
     let auth = cookies.access;
@@ -43,16 +44,15 @@ export default function WriteNewReview() {
         e.preventDefault()
 
         const data = { title, body, star }
-        //밑에 링크 나중에 수정 -- 병원 id에 맞게
         try {
-            const res = await api.post("/board/1/comment/", data, {
+            const res = await api.post(`/board/${hospitalid}/comment/`, data, {
                 headers: {
                     Authorization: `Bearer ${auth}`,
                     'Content-Type': 'application/json'
                 }
             });
             alert('후기를 올렸습니다.');
-            navigate('/'); //나중에 링크 변경
+            navigate(-1);
             console.log(res.data);
             return res.data;
         } catch (error) {

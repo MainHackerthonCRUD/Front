@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import HReviewEle from "./reviewele_hospital";
 
-export default function HospitalDetailReview() {
+export default function HospitalDetailReview({ hospitalId }) {
   return (
     <ReviewComponentWrapper>
         <h2>리뷰 목록</h2>
         <ReviewWrapper>
-            <HReviewEle/>
+            <HReviewEle hospitalId={hospitalId}/>
         </ReviewWrapper>
     </ReviewComponentWrapper>
   );
