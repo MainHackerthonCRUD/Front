@@ -40,6 +40,7 @@ export default function ReviewDetail() {
     return (
         <div>
             <ReviewPageWrapper>
+                <h2>{detail.hospital_name}</h2>
                 <ReviewItemWrapper>
                     <h3>{detail.title}</h3>
                     <ReviewModDiv>

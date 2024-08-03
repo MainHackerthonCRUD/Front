@@ -1,13 +1,45 @@
+import HospitalSearch from "../components/mainwrite_search_hospital";
+import WriteNewReview from "./review_write_page";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import api from "../api";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import useAuthStore from "../store";
 import CountingStars from "../components/countingstar";
+import { ReviewBoxWrapper, InfoForm, InputTitle, InputBody, SubmitButton, SelectTitle } from "../pages/review_write_page";
 
-export default function WriteNewReview() {
-    const { hospitalid } = useParams();
+
+export default function MainNewReview() {
+    
+    const [hospitalid, setHospitalId] = useState(null);
+    const [hospitalName, setHospitalName] = useState("");
+
+    return (
+        <ReviewBoxWrapper>
+            <h2>리뷰작성</h2>
+            <HospitalSearch setHospitalId={setHospitalId} setHospitalName={setHospitalName}/>
+            <HospitalNameWrapper>
+                <p>병원명: {hospitalName}</p>
+            </HospitalNameWrapper>
+            <MainWriteReview hospitalid={hospitalid}/>
+        </ReviewBoxWrapper>
+    )
+}
+
+const HospitalNameWrapper = styled.div`
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    background-color: #FFF;
+    border-radius: 3px;
+    font-size: 16px;    
+    outline: none;
+    margin-top: 10px;
+    font-weight: 700;
+`;
+
+export function MainWriteReview({hospitalid}) {
     const [cookies, setCookie] = useCookies(['access', 'nickname']);
     const { isAuthenticated } = useAuthStore();
     let auth = cookies.access;
@@ -80,8 +112,7 @@ export default function WriteNewReview() {
 
   return (
     <div>
-        <ReviewBoxWrapper>
-        <h2>리뷰 작성</h2>
+        <BoxWrapper>
         <InfoForm onSubmit={WriteReview}>
             <SelectTitle value={selectedTitle} onChange={handleSelectTitleChange}>
                 <option value="">제목을 선택하세요</option>
@@ -96,12 +127,12 @@ export default function WriteNewReview() {
             <CountingStars value={star} onChange={handleStarChange}></CountingStars>
             <SubmitButton type="submit">작성</SubmitButton>
         </InfoForm>
-        </ReviewBoxWrapper>
+        </BoxWrapper>
     </div>
-  )
+  );
 }
 
-export const ReviewBoxWrapper = styled.div`
+const BoxWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,63 +142,7 @@ export const ReviewBoxWrapper = styled.div`
     gap: 10px;
     background-color: #f7f7f7;
     border-radius: 20px;
-    padding: 20px 20px 20px 20px;
+    padding: 0px 20px 20px 20px;
 `;
 
-export const InfoForm = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
-`;
-
-export const InputTitle = styled.input`
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #d9d9d9;
-    border-radius: 3px;
-    font-size: 16px;    
-    outline: none;
-`;
-
-export const SelectTitle = styled.select`
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #d9d9d9;
-    border-radius: 3px;
-    font-size: 16px;
-    outline: none;
-
-    option {
-        color: ${({ disabled }) => (disabled ? 'gray' : '#000')};
-    }
-`;
-
-export const InputBody = styled.textarea`
-    width: 100%;
-    height: 70px;
-    padding: 10px;
-    border: 1px solid #d9d9d9;
-    border-radius: 3px;
-    font-size: 16px;    
-    outline: none;
-`;
-
-export const SubmitButton = styled.button`
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #d9d9d9;
-  border-radius: 3px;
-  background-color: #DFE0DF;
-  color: #716f6f;
-  font-weight: 550;
-  font-size: 16px;
-    
-  &:hover{
-    transform: scale(1.01);
-    background-color: #FECD55;
-    color: black;
-    }
-`;
 

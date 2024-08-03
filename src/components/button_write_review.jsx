@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-export default function MainWrite({ hospitalId }) {
+export default function WritePost({ hospitalId }) {
     const navigate = useNavigate();
     const handleWriteClick = () => {
         navigate(`/review/write/${hospitalId}`);

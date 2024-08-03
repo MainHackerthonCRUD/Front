@@ -64,8 +64,8 @@ export default function UReviewEle() {
         {myReviews.map((review) => (
             <ReviewElement key={review.id}>
             <PostContent>
+            <PostTitle>{review.hospital_name}</PostTitle>
                 <PostTitle>{review.title}</PostTitle>
-                <PostTitle>{review.id}</PostTitle>
                 <MyPost>                        
                     <MypageReviewDelete onDelete={() => handleDelete(review.id)}/>
                     <MyEditButton postid={review.id}/>

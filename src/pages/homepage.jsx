@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import SearchBox from "./mainsearch";
 import RegionBox from "./regionbutton";
-import MainWrite from "../components/mainwrite_button";
-
+import MainWrite from "../components/button_mainwrite";
 export default function HomePage() {
 
     return (
