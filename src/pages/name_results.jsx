@@ -69,7 +69,7 @@ export const ResultInnerContainer = styled.div`
   width: 80vw;
   max-width: 650px;
   gap: 10px;
-  background-color:#fffff0;//#f7f7f7;
+  background-color:#fffff3;//#f7f7f7;
   border-radius: 10px;
   padding: 10px 20px 10px 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
