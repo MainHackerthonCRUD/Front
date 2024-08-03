@@ -64,7 +64,6 @@ export default function HReviewEle({ hospitalId }) {
             <ReviewElement key={review.id}>
             <PostContent>
                 <PostTitle>{review.title}</PostTitle>
-                <PostTitle>{review.id}</PostTitle>
                 {currentUserNickname === review.nickname &&
                 (
                     <MyPost>                        
