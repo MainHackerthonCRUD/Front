@@ -109,6 +109,8 @@ const InformContainer = styled.div`
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+
 `;
 
 const Title = styled.h2`
@@ -120,7 +122,7 @@ const InformText = styled.p`
 `;
 
 const MapContainer = styled.div`
-  width: 100%;
-  height: 400px;
+  width: 50%;
+  height: 200px;
   margin-top: 20px;
 `;
