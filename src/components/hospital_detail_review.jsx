@@ -3,29 +3,48 @@ import HReviewEle from "./reviewele_hospital";
 
 export default function HospitalDetailReview({ hospitalId }) {
   return (
-    <ReviewComponentWrapper>
+    <ComponentOuterDiv>
+          <ReviewComponentWrapper>
         <h2>리뷰 목록</h2>
         <ReviewWrapper>
             <HReviewEle hospitalId={hospitalId}/>
         </ReviewWrapper>
     </ReviewComponentWrapper>
+    </ComponentOuterDiv>
   );
 }
+
+export const ComponentOuterDiv = styled.div`
+  background-color:#f0f0f0e7;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  border-radius: 10px;
+`;
 
 export const ReviewComponentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 650px;
     margin-top: 50px;
     gap: 20px;
+    padding: 0px 40px 40px 40px;
 `;
 
 const ReviewWrapper = styled.div`
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, minmax(200px, auto));
+    grid-template-columns: repeat(3, minmax(290px, 1fr));
+    grid-template-rows: repeat(3,auto);
     gap: 30px;
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, minmax(195px, 1fr)); /* 화면이 좁아지면 2열로 변경 */
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr; /* 화면이 더 좁아지면 1열로 변경 */
+  }
 `;
