@@ -78,7 +78,7 @@ export default function LoginPage() {
     align-items: center;
     gap: 10px;
     background-color: #ececec;
-    width: 100%;
+    width: 650px;
     height: 50%;
     padding: 30px;
     border-radius: 10px;

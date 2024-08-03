@@ -1,14 +1,34 @@
 import styled from "styled-components";
 import HReviewEle from "./reviewele_hospital";
+import { useState } from "react";
+import { NoReview } from "./reviewele_hospital";
+import GoBackButton from "./gobackbutton";
 
 export default function HospitalDetailReview({ hospitalId }) {
+
+  const [noReviews, setNoReviews] = useState(false);
+
+  const handleReviewStatusChange = (isEmpty) => {
+    setNoReviews(isEmpty);
+  };
+
   return (
     <ComponentOuterDiv>
-          <ReviewComponentWrapper>
+      <ReviewComponentWrapper>
         <h2>리뷰 목록</h2>
-        <ReviewWrapper>
-            <HReviewEle hospitalId={hospitalId}/>
-        </ReviewWrapper>
+        {!noReviews && (
+          <ReviewWrapper>
+            <HReviewEle hospitalId={hospitalId} onReviewStatusChange={handleReviewStatusChange} />
+          </ReviewWrapper>
+        )}
+        {noReviews && (
+          <NoReview>
+              <h3>아직 작성된 리뷰가 없습니다.</h3>
+              <div>
+                <GoBackButton />
+              </div>
+          </NoReview>
+        )}
     </ReviewComponentWrapper>
     </ComponentOuterDiv>
   );
@@ -20,8 +40,9 @@ export const ComponentOuterDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: auto;
+  min-height: 60vh;
   border-radius: 10px;
+  margin: 0 auto;
 `;
 
 export const ReviewComponentWrapper = styled.div`
@@ -32,6 +53,7 @@ export const ReviewComponentWrapper = styled.div`
     margin-top: 50px;
     gap: 20px;
     padding: 0px 40px 40px 40px;
+    height: 100%;
 `;
 
 const ReviewWrapper = styled.div`
