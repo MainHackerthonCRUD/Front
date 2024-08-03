@@ -91,17 +91,17 @@ export default function HReviewEle({ hospitalId }) {
                     <ToDetailPost href={`/${hospitalId}/${review.id}`}/> 
                 </PostText>
             </PostContent>
-            <GoButton>
-                <a href={`/${hospitalId}/${review.id}`}>
-                자세히보기
-                </a>
-            </GoButton>
             {deletingReviewId === review.id && (
                 <DeleteConfirm
                   onConfirm={handleDeleteOk}
                   onCancel={handleCancelDelete}
                 />
             )}
+            <GoButton>
+                <a href={`/${hospitalId}/${review.id}`}>
+                자세히보기
+                </a>
+            </GoButton>
         </ReviewElement>  
         ))
     )}
@@ -130,13 +130,15 @@ export const NoReview = styled.div`
 export const ReviewElement = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 20px;
     align-items: center;
     background-color: #f7f7f7;
     border-radius: 10px;
     gap: 10px;
     width: 100%;
+    height: 100%;
+    box-sizing: border-box;
 `;
 
 export const PostInfo = styled.div`
