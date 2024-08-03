@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 export default function MapInform({setHospitalId}) {
-  const { hospital_name } = useParams(); // URL에서 병원 이름을 가져옵니다.
+  const { hospital_name } = useParams(); // URL에서 병원 이름
   const [hospitalInfo, setHospitalInfo] = useState(null);
 
   useEffect(() => {
@@ -39,6 +39,9 @@ export default function MapInform({setHospitalId}) {
     maindoctorcnt,
   } = hospitalInfo;
 
+    //더보기 추가
+    const kakaoMapUrl = `https://map.kakao.com/link/search/${(name)}`;
+
   return (
     <InformContainer>
       <Title>{name}</Title>
@@ -47,6 +50,7 @@ export default function MapInform({setHospitalId}) {
       <InformText>네이버 방문 리뷰 수: {visitcnt}</InformText>
       <InformText>네이버 블로그 리뷰 수: {blogcnt}</InformText>
       <InformText>산부인과 전문의 수: {maindoctorcnt}</InformText>
+      <MoreLink href={kakaoMapUrl} target="_blank" rel="noopener noreferrer"> 자세한 정보 더보기 </MoreLink>
     </InformContainer>
   );
 }
@@ -71,4 +75,19 @@ const InformText = styled.p`
   font-size: 16px;
   margin: 5px 0;
   margin-bottom: 10px;
+`;
+
+const MoreLink = styled.a`
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #c7c7c7;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: rgba(254, 206, 85, 0.84);
+    color: black;
+  }
 `;
