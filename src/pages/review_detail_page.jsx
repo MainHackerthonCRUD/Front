@@ -8,6 +8,7 @@ import DeleteButton from "../components/review_delete";
 import { EditButton } from "../components/review_edit";
 import { useCookies } from 'react-cookie';
 import { MyPost } from "../components/reviewele_hospital";
+import { HostpitalName } from "../components/review_edit";
 
 export default function ReviewDetail() {
     const { hospitalid, postid } = useParams();
@@ -40,7 +41,7 @@ export default function ReviewDetail() {
     return (
         <div>
             <ReviewPageWrapper>
-                <h2>{detail.hospital_name}</h2>
+                <HostpitalName href={`/hospital/${detail.hospital_name}`}>{detail.hospital_name}</HostpitalName>
                 <ReviewItemWrapper>
                     <h3>{detail.title}</h3>
                     <ReviewModDiv>

@@ -20,7 +20,7 @@ export default function MypageReviewEdit() {
       {
         title:"",
         body:"",
-        star:"",
+        star:0,
       });
   
     useEffect(() => {
@@ -44,6 +44,10 @@ export default function MypageReviewEdit() {
   
   const handlePostChange = (e) => {
     setRewriteData({...rewriteData, [e.target.name]: e.target.value});
+  };
+
+  const handleStarChange = (newStar) => {
+    setRewriteData({ ...rewriteData, star: newStar });
   };
   
   const handleSubmit = async (e) => {
@@ -71,7 +75,7 @@ export default function MypageReviewEdit() {
           <InfoForm onSubmit={handleSubmit}>
               <InputTitle placeholder="직접 제목 입력" name="title" value={rewriteData.title} onChange={handlePostChange} />
               <InputBody placeholder="리뷰 작성" name="body" value={rewriteData.body} onChange={handlePostChange} />
-              <CountingStars value={rewriteData.star} onChange={handlePostChange}></CountingStars>
+              <CountingStars value={rewriteData.star} onChange={handleStarChange}></CountingStars>
               <SubmitButton type="submit">작성</SubmitButton>
           </InfoForm>
           </ReviewBoxWrapper>

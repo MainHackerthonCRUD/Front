@@ -43,6 +43,11 @@ export default function WriteNewReview() {
     const WriteReview = async (e) => {
         e.preventDefault()
 
+        if (!title || !body || !star) {
+            alert("모든 필드를 입력하세요.");
+            return;
+          }
+
         const data = { title, body, star }
         try {
             const res = await api.post(`/board/${hospitalid}/comment/`, data, {

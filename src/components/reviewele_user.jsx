@@ -7,6 +7,7 @@ import { StarRating } from "./countingstar";
 import { MyEditButton } from "./mypage_review_edit";
 import MypageReviewDelete from "./mypage_review_delete";
 import { DeleteConfirm } from "./review_delete";
+import { HostpitalName } from "./review_edit";
 
 export default function UReviewEle() {
 
@@ -64,7 +65,7 @@ export default function UReviewEle() {
         {myReviews.map((review) => (
             <ReviewElement key={review.id}>
             <PostContent>
-            <PostTitle>{review.hospital_name}</PostTitle>
+            <HostpitalName href={`/hospital/${review.hospital_name}`}>{review.hospital_name}</HostpitalName>
                 <PostTitle>{review.title}</PostTitle>
                 <MyPost>                        
                     <MypageReviewDelete onDelete={() => handleDelete(review.id)}/>
