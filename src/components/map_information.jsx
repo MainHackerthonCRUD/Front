@@ -17,15 +17,14 @@ export default function MapInform({ setHospitalId }) {
           setHospitalInfo(data[0]);
           setHospitalId(data[0].id);
 
-          // Fetch coordinates using Kakao Geocoding API if latitude and longitude are not provided
           if (!data[0].latitude || !data[0].longitude) {
-            const geocoder = new window.kakao.maps.services.Geocoder();
-            geocoder.addressSearch(data[0].address, (result, status) => {
+            const places = new window.kakao.maps.services.Places();
+            places.keywordSearch(hospital_name, (result, status) => {
               if (status === window.kakao.maps.services.Status.OK) {
                 const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
                 setCoordinates(coords);
               } else {
-                console.error('Geocoding failed: ' + status);
+                console.error('Places search failed: ' + status);
               }
             });
           } else {
@@ -50,15 +49,14 @@ export default function MapInform({ setHospitalId }) {
 
       script.onload = () => {
         if (window.kakao && window.kakao.maps) {
-          const kakao = window.kakao;
           const container = document.getElementById('map');
           const options = {
             center: coordinates,
             level: 3,
           };
-          const map = new kakao.maps.Map(container, options);
+          const map = new window.kakao.maps.Map(container, options);
 
-          const marker = new kakao.maps.Marker({
+          const marker = new window.kakao.maps.Marker({
             position: coordinates,
           });
           marker.setMap(map);
@@ -105,12 +103,11 @@ export default function MapInform({ setHospitalId }) {
 }
 
 const InformContainer = styled.div`
+  width: 80%;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 80%;
-
 `;
 
 const Title = styled.h2`
@@ -126,3 +123,4 @@ const MapContainer = styled.div`
   height: 200px;
   margin-top: 20px;
 `;
+
