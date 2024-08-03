@@ -48,14 +48,24 @@ export default function SignupPage() {
         console.error('응답 데이터:', error.response.data);
         console.error('응답 상태 코드:', error.response.status);
         console.error('응답 헤더:', error.response.headers);
-      } else if (error.request) {
-        console.error('요청:', error.request);
-      } else {
-        console.error('에러 메시지:', error.message);
+        
+        // 중복닉 에러 추가
+        if (error.response.status === 400) {
+        if (error.response.data.username && error.response.data.username.includes("A user with that username already exists.")) {
+          alert('중복되는 닉네임입니다');
+        } else {
+          alert('회원가입 실패: ' + JSON.stringify(error.response.data));
+        }
       }
-      return error;
+      } else if (error.request) {
+      console.error('요청:', error.request);
+      } else {
+      console.error('에러 메시지:', error.message);
+        }
+        return error;
+      }
     }
-  }
+          
 
   return (
     <SignupDiv>
