@@ -96,7 +96,7 @@ const SignupDiv = styled.div`
   align-items: center;
   gap: 10px;
   background-color: #ececec;
-  width: 500px;
+  width: 650px;
   height: 70%;
   padding: 30px;
   border-radius: 10px;
