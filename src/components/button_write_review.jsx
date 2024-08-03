@@ -21,11 +21,12 @@ const WriteButtonContainer = styled.div`
     align-items: center;
     text-align: center;
     margin: 20px 0px 30px 0px;
+    width: 80%;
 `;
 
 const ReviewButton = styled.button`
 
-    width: 650px;
+    width: 100%;
     height: 80px;
     cursor: pointer;
     border: none;

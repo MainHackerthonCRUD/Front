@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ReviewBoxWrapper, InfoForm, InputTitle, InputBody, SubmitButton } from "../pages/review_write_page";
 import CountingStars from "./countingstar";
 import { useCookies } from "react-cookie";
+import PropTypes from 'prop-types';
 
 export default function EditPage () {
 
@@ -21,7 +22,7 @@ export default function EditPage () {
     {
       title:"",
       body:"",
-      star:"",
+      star:0,
     });
 
   useEffect(() => {
@@ -45,6 +46,10 @@ export default function EditPage () {
 
 const handlePostChange = (e) => {
   setRewriteData({...rewriteData, [e.target.name]: e.target.value});
+};
+
+const handleStarChange = (newStar) => {
+  setRewriteData({ ...rewriteData, star: newStar });
 };
 
 const handleSubmit = async (e) => {
@@ -72,7 +77,7 @@ const handleSubmit = async (e) => {
         <InfoForm onSubmit={handleSubmit}>
             <InputTitle placeholder="직접 제목 입력" name="title" value={rewriteData.title} onChange={handlePostChange} />
             <InputBody placeholder="리뷰 작성" name="body" value={rewriteData.body} onChange={handlePostChange} />
-            <CountingStars value={rewriteData.star} onChange={handlePostChange}></CountingStars>
+            <CountingStars value={rewriteData.star} onChange={handleStarChange}></CountingStars>
             <SubmitButton type="submit">작성</SubmitButton>
         </InfoForm>
         </ReviewBoxWrapper>
@@ -93,6 +98,11 @@ export function EditButton({hospitalid, postid}) {
     </div>
   );
 }
+
+EditButton.propTypes = {
+  hospitalid: PropTypes.string.isRequired,
+  postid: PropTypes.string.isRequired,
+};
 
 export const HostpitalName = styled.a`
   font-size: 24px;

@@ -48,7 +48,8 @@ export default function LoginPage() {
   }
 
     return (
-      <LoginDiv>
+      <>
+              <LoginDiv>
       <h2>로그인</h2>
       <SubmitForm onSubmit={loginOK}>
         <div>
@@ -66,6 +67,7 @@ export default function LoginPage() {
         <a href="/signup">회원가입</a>
       </LinkToOtherpage>
       </LoginDiv>
+      </>
     );
   }
 
@@ -76,7 +78,7 @@ export default function LoginPage() {
     align-items: center;
     gap: 10px;
     background-color: #ececec;
-    width: 500px;
+    width: 100%;
     height: 50%;
     padding: 30px;
     border-radius: 10px;
