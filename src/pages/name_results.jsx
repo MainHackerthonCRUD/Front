@@ -26,37 +26,37 @@ export default function SearchNameResults() {
       navigate(`/hospital/${result.hospital_name}`)
     }
 
-  return (
-    <div>
-      <ResultWrapper>
-      <h2>병원명 검색 결과</h2>
-      <ResultInnerContainer>
-      {results.map((result, index) => (
-          <ResultItem key={index}>
-            <a onClick={() => handleClickResult(result)}>
-            <div>
-              <span>{result.hospital_name} ({result.gu})</span>
-            </div>
-            <div>
-              <span>{result.address}</span>
-              <span>{result.reservation}</span>
-              <span>블로그 리뷰({result.blogcnt})</span>
-            </div>
-            </a>
-            <p>{result.textbox}</p>
-          </ResultItem>
-        ))}
-      </ResultInnerContainer>
-      </ResultWrapper>
-    </div>
-  )
-}
+    return (
+      <div>
+        <ResultWrapper>
+        <h2>병원명 검색 결과</h2>
+        <ResultInnerContainer>
+        {results.map((result, index) => (
+            <ResultItem key={index}>
+              <a onClick={() => handleClickResult(result)}>
+              <div>
+                <ResultTitle>{result.hospital_name} ({result.gu})</ResultTitle>
+              </div>
+              <div>
+                <ResultText>{result.address}</ResultText>
+                <ResultText>{result.reservation ? "예약 가능" : "예약 불가능"}</ResultText>
+                <ResultText>블로그 리뷰({result.blogcnt})</ResultText>
+              </div>
+              </a>
+              <p>{result.textbox}</p>
+            </ResultItem>
+          ))}
+        </ResultInnerContainer>
+        </ResultWrapper>
+      </div>
+    )
+  }
 
 export const ResultWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 20px; //원래 80px였는데 위로 조금 올렸습니다!
   gap: 10px;
 `;
 
@@ -65,12 +65,14 @@ export const ResultInnerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
+  margin-top: 15px; // 병원명 검색 결과 사이에 추가
   width: 80vw;
   max-width: 650px;
   gap: 10px;
-  background-color: #f7f7f7;
-  border-radius: 20px;
-  padding: 20px 20px 20px 20px;
+  background-color:#fffff0;//#f7f7f7;
+  border-radius: 10px;
+  padding: 10px 20px 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
 export const ResultItem= styled.div`
@@ -78,6 +80,8 @@ export const ResultItem= styled.div`
   flex-direction: column;
   border-top: 1px solid #d9d9d9;
   border-bottom: 1px solid #d9d9d9;
+  border-radius: 10px;
+  padding: 10px;
   width: 100%;
   gap: 10px;
 
@@ -94,6 +98,21 @@ export const ResultItem= styled.div`
   a {
     &:hover {
       background-color: #FECD55;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 0 5px 0 5px ;
+      border-radius: 10px;
     }
   }
+`;
+
+export const ResultText = styled.span`
+  margin-top: 10px;
+  margin-bottom: 5px;
+  //margin-left: 10px;
+`;
+
+export const ResultTitle = styled.span`
+    margin-top: 10px;
+    font-weight: 600;
+    //margin-left: 10px;
 `;
