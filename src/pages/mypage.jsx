@@ -7,7 +7,6 @@ import UserProfile from "../components/myprofile";
 export default function MyPage() {
   return (
     <MypageWrapper>
-        <p>여기엔 나중에 유저데이터 컴포넌트로 불러옵니다</p>
         <UserProfile/>
         <MypageReviews/>
     </MypageWrapper>
