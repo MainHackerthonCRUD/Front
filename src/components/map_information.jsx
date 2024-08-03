@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 export default function MapInform() {
-  const { hospital_name } = useParams(); // URL에서 병원 이름을 가져옵니다.
+  const { hospital_name } = useParams(); // URL에서 병원 이름 가져오기
   const [hospitalInfo, setHospitalInfo] = useState(null);
 
   useEffect(() => {
