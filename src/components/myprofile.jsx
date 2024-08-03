@@ -63,10 +63,12 @@ export default function UserProfile() {
   
 const ProfileContainer = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: #ececec;
   border-radius: 5px;
   height: 240px;
-  width: 500px;
+  width: 650px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   align-items: center; /* Center vertically */
@@ -78,11 +80,11 @@ const NicknameContainer = styled.div`
   align-items: center;
   background-color: #FECD55;
   border-radius: 10px;
-  margin-left: 10px;
-  margin-right: 40px;
+  margin-left: 20px;
+  margin-right: 100px;
   padding: 30px;
   height: 80px;
-  flex: 1;
+  flex: 2;
 `;
 
 const NicknameFont = styled.h1`
