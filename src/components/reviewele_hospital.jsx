@@ -7,7 +7,7 @@ import DeleteButton, {DeleteConfirm} from "./review_delete";
 import { EditButton } from "./review_edit";
 import GoBackButton from "./gobackbutton";
 
-export default function HReviewEle({ hospitalId }) {
+export default function HReviewEle({ hospitalId, onReviewStatusChange }) {
 
     const [reviews, setReviews] = useState([]);
     const [deletingReviewId, setDeletingReviewId] = useState(null);
@@ -21,7 +21,7 @@ export default function HReviewEle({ hospitalId }) {
         try {
             const res = await api.get(`board/${hospitalId}/commentget/`)
             setReviews(res.data);
-            console.log(res.data);
+            onReviewStatusChange(res.data.length === 0);
         } catch (error) {
             console.error('error', error);
         }
@@ -110,13 +110,12 @@ export default function HReviewEle({ hospitalId }) {
 }
 
 export const NoReview = styled.div`
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #f7f7f7;
     border-radius: 10px;
     gap: 10px;
 
@@ -127,6 +126,15 @@ export const NoReview = styled.div`
         align-items: center;
     }
 `;
+
+export const NoReviwMSG = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
 export const ReviewElement = styled.div`
     display: flex;
     flex-direction: column;

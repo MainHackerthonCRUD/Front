@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ReviewEle from "../components/reviewele_hospital";
 import MypageReviews from "../components/mypage_reviews";
 import UserProfile from "../components/myprofile";
 
