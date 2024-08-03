@@ -10,7 +10,7 @@ export default function MapInform() {
   useEffect(() => {
     const fetchHospitalInfo = async () => {
       try {
-        const response = await axios.get(`https://obspital.shop/board/search/${encodeURIComponent(hospital_name)}`);
+        const response = await axios.get(`https://obspital.shop/board/search/${hospital_name}`);
         const data = response.data;
         if (data.length > 0) {
           setHospitalInfo(data[0]); // 첫 번째 요소를 상태에 저장
