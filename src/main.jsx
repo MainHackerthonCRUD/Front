@@ -65,9 +65,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/hospital/:hospital_name",
-        //path:"/kakaomap/detail",
-        //element:<MapDetail/>
-        //element:<Detail/>
         element: <MergeDetail/>
       },
       {
