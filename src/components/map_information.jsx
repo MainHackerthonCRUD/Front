@@ -42,12 +42,11 @@ export default function MapInform({setHospitalId}) {
   return (
     <InformContainer>
       <Title>{name}</Title>
-      <InformText>주소: {address}</InformText>
-      <InformText>구: {gu}</InformText>
+      <InformText>위치: {address}</InformText>
       <InformText>예약 가능 여부: {reservation ? "가능" : "불가능"}</InformText>
-      <InformText>방문 리뷰 수: {visitcnt}</InformText>
-      <InformText>블로그 리뷰 수: {blogcnt}</InformText>
-      <InformText>산부인과 의사 수: {maindoctorcnt}</InformText>
+      <InformText>네이버 방문 리뷰 수: {visitcnt}</InformText>
+      <InformText>네이버 블로그 리뷰 수: {blogcnt}</InformText>
+      <InformText>산부인과 전문의 수: {maindoctorcnt}</InformText>
     </InformContainer>
   );
 }
@@ -56,7 +55,7 @@ const InformContainer = styled.div`
   background-color: #f0f0f0e7;
   width: 80%;
   margin: 0 auto;
-  border-radius: 5%;
+  border-radius: 10px;
   text-align: center;
   align-items: center;
   padding: 20px;
@@ -64,11 +63,12 @@ const InformContainer = styled.div`
 
 const Title = styled.h1`
   font-size: 24px;
-  font-weight: 500;
-  margin: 10px 0;
+  font-weight: 800;
+  margin: 10px 0 30px 0 ;
 `;
 
 const InformText = styled.p`
   font-size: 16px;
   margin: 5px 0;
+  margin-bottom: 10px;
 `;
