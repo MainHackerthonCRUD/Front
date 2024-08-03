@@ -1,0 +1,16 @@
+var container = document.getElementById('map'); 
+var options = { 
+    center: new kakao.maps.LatLng(33.450701, 126.570667), 
+    level: 3 
+};
+var map = new kakao.maps.Map(container, options);
+
+// 위로는 지난 번 코드 //
+
+
+var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667);  // 마커가 표시될 위치 
+var marker = new kakao.maps.Marker({  // 마커를 생성한다
+    position: markerPosition
+});
+
+marker.setMap(map); // 마커가 지도 위에 표시되도록 설정한다

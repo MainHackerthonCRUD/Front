@@ -23,8 +23,7 @@ export default function SearchNameResults() {
     }, [hospital_name]);
 
     const handleClickResult = (result) => {
-      navigate(`/hospital/:hospital_name`)
-      //링크 나중에 그 뭐냐 useParam 사용으로 바꾸기
+      navigate(`/hospital/${result.hospital_name}`)
     }
 
   return (
