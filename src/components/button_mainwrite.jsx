@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function MainWrite({ hospitalId }) {
     const navigate = useNavigate();
     const handleWriteClick = () => {
-        navigate(`/review/write/${hospitalId}`);
+        navigate(`/review/write/`);
     };
 
     return(

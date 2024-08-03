@@ -20,6 +20,7 @@ import MergeDetail from './pages/hospital_detailpage';
 import EditPage from './components/review_edit';
 import { DeleteConfirm } from './components/review_delete';
 import MypageReviewEdit from './components/mypage_review_edit';
+import MainNewReview from './pages/main_review_page';
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: "/myedit/:postid",
         element: <MypageReviewEdit/>
+      },
+      {
+        path:"/review/write/",
+        element: <MainNewReview/>
       }
 
     ]
