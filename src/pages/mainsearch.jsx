@@ -24,6 +24,7 @@ export default function SearchBox() {
             setIsFocus(false);
         }
     
+    // 아래 -> suggestiondropdown api
         const handleInputChange = async (e) => {
             const searchText = e.target.value;
             setSearchText(searchText);
@@ -32,7 +33,11 @@ export default function SearchBox() {
             if (searchText) {
                 try {
                     const response = await api.get(`/board/search/${searchText}`);
-                    setSuggestions(response.data);
+                    const DataLimit = response.data.map(item => ({
+                        hospital_name: item.hospital_name,
+                        gu: item.gu
+                    })).slice(0, 15); //드롭다운 데이터 최대 15개만 로딩
+                    setSuggestions(DataLimit);
                 } catch (error) {
                     console.error(error);
                 }
