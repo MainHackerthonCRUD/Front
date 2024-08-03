@@ -23,7 +23,7 @@ export default function SearchNameResults() {
     }, [hospital_name]);
 
     const handleClickResult = (result) => {
-      navigate(`/review/${result.id}`)
+      navigate(`/hospital/${result.hospital_name}`)
     }
 
   return (
