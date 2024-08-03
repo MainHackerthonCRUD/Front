@@ -15,12 +15,13 @@ export default function HospitalDetailReview({ hospitalId }) {
 }
 
 export const ComponentOuterDiv = styled.div`
-  background-color: #DFDFDF;
+  background-color:#f0f0f0e7;
   width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: auto;
+  border-radius: 10px;
 `;
 
 export const ReviewComponentWrapper = styled.div`
@@ -36,11 +37,11 @@ export const ReviewComponentWrapper = styled.div`
 const ReviewWrapper = styled.div`
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(3, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, minmax(290px, 1fr));
     grid-template-rows: repeat(3,auto);
     gap: 30px;
   @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, minmax(220px, 1fr)); /* 화면이 좁아지면 2열로 변경 */
+    grid-template-columns: repeat(2, minmax(195px, 1fr)); /* 화면이 좁아지면 2열로 변경 */
   }
 
   @media (max-width: 500px) {

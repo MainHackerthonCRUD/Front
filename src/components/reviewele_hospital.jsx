@@ -110,7 +110,7 @@ export default function HReviewEle({ hospitalId }) {
 }
 
 export const NoReview = styled.div`
-    width: 650px;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;

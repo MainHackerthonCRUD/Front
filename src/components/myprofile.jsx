@@ -68,7 +68,8 @@ const ProfileContainer = styled.div`
   background-color: #ececec;
   border-radius: 5px;
   height: 240px;
-  width: 650px;
+  width: 80%;
+  gap: 70px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   align-items: center; /* Center vertically */
@@ -80,11 +81,9 @@ const NicknameContainer = styled.div`
   align-items: center;
   background-color: #FECD55;
   border-radius: 10px;
-  margin-left: 20px;
-  margin-right: 100px;
   padding: 30px;
   height: 80px;
-  flex: 2;
+  flex: 4;
 `;
 
 const NicknameFont = styled.h1`
@@ -98,7 +97,7 @@ const ComponentContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  flex: 2;
+  flex: 6;
 `;
 
 const ProfileFont = styled.p`
