@@ -38,6 +38,7 @@ export default function SignupPage() {
       password2: password2,
       nickname: nickname
     }
+    console.log(userdata.nickname)
     try {
       const response = await api.post("/dj/registration/", userdata);
       alert('회원가입 성공');
@@ -51,7 +52,7 @@ export default function SignupPage() {
         
         // 중복닉 에러 추가
         if (error.response.status === 400) {
-        if (error.response.data.username && error.response.data.username.includes("A user with that username already exists.")) {
+        if (error.response.data.nickname && error.response.data.nickname.includes("A user with that username already exists.")) {
           alert('중복되는 닉네임입니다');
         } else {
           alert('회원가입 실패: ' + JSON.stringify(error.response.data));
