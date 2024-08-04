@@ -53,8 +53,8 @@ export default function UserProfile() {
         </NicknameContainer>
   
         <ComponentContainer>
-          <ProfileFont>리뷰 수: {profile.comments_count}</ProfileFont>
-          <ProfileFont>평균평점: {profile.star_average} 점</ProfileFont>
+          <ProfileFont>작성한 리뷰: {profile.comments_count}개</ProfileFont>
+          <ProfileFont>평균 평점: {profile.star_average}점</ProfileFont>
         </ComponentContainer>
       </ProfileContainer>
     </>
@@ -63,16 +63,14 @@ export default function UserProfile() {
   
 const ProfileContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #ececec;
-  border-radius: 5px;
-  height: 240px;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0e7;
+  border-radius: 10px;
+  height: auto;
   width: 80%;
-  gap: 70px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  align-items: center; /* Center vertically */
+  padding: 30px;
+  margin: 20px auto;
 `;
 
 const NicknameContainer = styled.div`
@@ -81,27 +79,26 @@ const NicknameContainer = styled.div`
   align-items: center;
   background-color: #FECD55;
   border-radius: 10px;
-  padding: 30px;
-  height: 80px;
-  flex: 4;
+  padding: 20px 40px;
+  margin-bottom: 20px;
 `;
 
 const NicknameFont = styled.h1`
   color: black;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
 `;
 
 const ComponentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  flex: 6;
+  align-items: center;
+  width: 100%;
 `;
 
 const ProfileFont = styled.p`
   font-size: 20px;
   font-weight: 600;
-  margin: 5px 0;
+  margin: 10px 0;
+  color: #333;
 `;

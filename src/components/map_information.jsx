@@ -7,7 +7,10 @@ export default function MapInform({ setHospitalId }) {
   const { hospital_name } = useParams();
   const [hospitalInfo, setHospitalInfo] = useState(null);
   const [coordinates, setCoordinates] = useState(null);
+  // 더보기 버튼
   const kakaoMapUrl = `https://map.kakao.com/link/search/${(hospital_name)}`;
+  const naverBlogSearchUrl = `https://search.naver.com/search.naver?where=post&query=${hospital_name}`;
+
 
   useEffect(() => {
     const fetchHospitalInfo = async () => {
@@ -93,13 +96,20 @@ export default function MapInform({ setHospitalId }) {
   return (
     <InformContainer>
       <Title>{name}</Title>
-      <MoreLink href={kakaoMapUrl} target="_blank" rel="noopener noreferrer"> 자세한 정보 더보기 </MoreLink>
       <InformText>위치: {address}</InformText>
+      <InformText>산부인과 전문의 수: {maindoctorcnt}</InformText>
       <InformText>네이버 예약 가능 여부: {reservation ? "가능" : "불가능"}</InformText>
       <InformText>네이버 방문 리뷰 수: {visitcnt}</InformText>
       <InformText>네이버 블로그 리뷰 수: {blogcnt}</InformText>
-      <InformText>산부인과 전문의 수: {maindoctorcnt}</InformText>
-      
+
+      <LinkContainer>
+      <MoreLink href={kakaoMapUrl} target="_blank" rel="noopener noreferrer">
+        카카오맵에서 더보기
+      </MoreLink>
+      <NaverLink href={naverBlogSearchUrl} target="_blank" rel="noopener noreferrer">
+        네이버에서 더보기
+      </NaverLink>
+      </LinkContainer>
       <MapContainer id="map" />
     </InformContainer>
   );
@@ -136,24 +146,53 @@ const MapContainer = styled.div`
   width: 80%;
   height: 300px;
   margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
+const LinkContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; 
+  margin: 20px 0;
+`;
+
+
 const MoreLink = styled.a`
   display: inline-block;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  padding: 10px 15px;
-  background-color: #c7c7c7;
+  height: 70px;
+  width: 235px;
+  padding: 20px 15px;
+  background-color: #e9e500;
   color: black;
   text-decoration: none;
   border-radius: 5px;
-  font-size: 1em;
+  font-size: 18px;
   font-weight: 600;
   &:hover {
-    background-color: rgba(254, 206, 85, 0.84);
+    background-color: rgba(255, 238, 0, 0.84);
+    color: black;
+  }
+`;
+
+
+
+const NaverLink = styled.a`
+  display: inline-block;
+  height: 70px;
+  width: 235px;
+  padding: 20px 15px;
+  background-color: rgba(121, 221, 96, 0.84);
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  &:hover {
+    background-color: rgba(102, 255, 64, 0.84);
     color: black;
   }
 `;
