@@ -110,21 +110,24 @@ export default function HReviewEle({ hospitalId, onReviewStatusChange }) {
 }
 
 export const NoReview = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border-radius: 10px;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 40px 40px 40px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0px;
 
-    div {
-        width: 350px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  div {
+    width: 350px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 `;
 
 export const NoReviwMSG = styled.div`
