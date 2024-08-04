@@ -58,6 +58,13 @@ export default function SignupPage() {
           alert('회원가입 실패: ' + JSON.stringify(error.response.data));
         }
       }
+        else if (error.response.status === 500) {
+            if (error.response.data.nickname && error.response.data.nickname.includes("A user with that username already exists.")) {
+              alert('중복되는 닉네임입니다');
+            } else {
+              alert('회원가입 실패: ' + JSON.stringify(error.response.data));
+            }
+          }
       } else if (error.request) {
       console.error('요청:', error.request);
       } else {
