@@ -15,19 +15,24 @@ export default function HospitalDetailReview({ hospitalId }) {
   return (
     <ComponentOuterDiv>
       <ReviewComponentWrapper>
-        <h2>리뷰 목록</h2>
         {!noReviews && (
-          <ReviewWrapper>
-            <HReviewEle hospitalId={hospitalId} onReviewStatusChange={handleReviewStatusChange} />
-          </ReviewWrapper>
+          <>
+            <h2>리뷰 목록</h2>
+            <ReviewWrapper>
+              <HReviewEle hospitalId={hospitalId} onReviewStatusChange={handleReviewStatusChange} />
+            </ReviewWrapper>
+          </>
         )}
         {noReviews && (
+          <>
           <NoReview>
-              <h3>아직 작성된 리뷰가 없습니다.</h3>
-              <div>
-                <GoBackButton />
-              </div>
+            <h3>아직 작성된 리뷰가 없습니다.</h3>
+            <div>
+              <GoBackButton />
+            </div>
           </NoReview>
+          </>
+
         )}
     </ReviewComponentWrapper>
     </ComponentOuterDiv>
@@ -48,12 +53,11 @@ export const ComponentOuterDiv = styled.div`
 export const ReviewComponentWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; 
     align-items: center;
-    margin-top: 50px;
     gap: 20px;
-    padding: 0px 40px 40px 40px;
-    height: 100%;
+    padding: 20px 40px 40px 40px;
+    height: auto;
 `;
 
 const ReviewWrapper = styled.div`
