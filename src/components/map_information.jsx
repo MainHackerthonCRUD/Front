@@ -7,10 +7,11 @@ export default function MapInform({ setHospitalId }) {
   const { hospital_name } = useParams();
   const [hospitalInfo, setHospitalInfo] = useState(null);
   const [coordinates, setCoordinates] = useState(null);
+  const [address, setAddress] = useState(''); // 카카오맵에서 세부주소 가져오기 세팅
+
   // 더보기 버튼
   const kakaoMapUrl = `https://map.kakao.com/link/search/${(hospital_name)}`;
   const naverBlogSearchUrl = `https://search.naver.com/search.naver?where=post&query=${hospital_name}`;
-
 
   useEffect(() => {
     const fetchHospitalInfo = async () => {
@@ -21,20 +22,18 @@ export default function MapInform({ setHospitalId }) {
           setHospitalInfo(data[0]);
           setHospitalId(data[0].id);
 
-          if (!data[0].latitude || !data[0].longitude) {
-            const places = new window.kakao.maps.services.Places();
-            places.keywordSearch(hospital_name, (result, status) => {
-              if (status === window.kakao.maps.services.Status.OK) {
-                const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
-                setCoordinates(coords);
-              } else {
-                console.error('Places search failed: ' + status);
-              }
-            });
-          } else {
-            const coords = new window.kakao.maps.LatLng(data[0].latitude, data[0].longitude);
-            setCoordinates(coords);
-          }
+          const places = new window.kakao.maps.services.Places();
+          places.keywordSearch(hospital_name, (result, status) => {
+            if (status === window.kakao.maps.services.Status.OK) {
+              const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
+              setCoordinates(coords);
+
+              // 카카오맵에서 주소 가져오기
+              setAddress(result[0].road_address_name || result[0].address_name);
+            } else {
+              console.error('Places search failed: ' + status);
+            }
+          });
         }
       } catch (error) {
         console.error("Error fetching hospital data:", error);
@@ -64,6 +63,15 @@ export default function MapInform({ setHospitalId }) {
             position: coordinates,
           });
           marker.setMap(map);
+          
+          // 마커 클릭시 인포윈도우 표출
+          const infowindow = new window.kakao.maps.InfoWindow({
+            content: `<div style="padding:5px;">${hospital_name}<br><a href="https://map.kakao.com/link/map/${hospital_name},${coordinates.getLat()},${coordinates.getLng()}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${hospital_name},${coordinates.getLat()},${coordinates.getLng()}" style="color:blue" target="_blank">길찾기</a></div>`,
+          });
+          // 클릭 시 인포윈도우표출
+          window.kakao.maps.event.addListener(marker, 'click', () => {
+            infowindow.open(map, marker);
+          });
         } else {
           console.error("Kakao maps API failed to load");
         }
@@ -77,7 +85,7 @@ export default function MapInform({ setHospitalId }) {
         document.head.removeChild(script);
       };
     }
-  }, [coordinates]);
+  }, [coordinates, hospital_name]);
 
   if (!hospitalInfo) {
     return <p>로딩 중...</p>;
@@ -85,8 +93,6 @@ export default function MapInform({ setHospitalId }) {
 
   const {
     hospital_name: name,
-    address,
-    gu,
     reservation,
     visitcnt,
     blogcnt,
@@ -97,23 +103,24 @@ export default function MapInform({ setHospitalId }) {
     <InformContainer>
       <Title>{name}</Title>
       <InformText>위치: {address}</InformText>
-      <InformText>산부인과 전문의 수: {maindoctorcnt}</InformText>
+      <InformText>산부인과 전문의 수: {maindoctorcnt}명</InformText>
       <InformText>네이버 예약 가능 여부: {reservation ? "가능" : "불가능"}</InformText>
-      <InformText>네이버 방문 리뷰 수: {visitcnt}</InformText>
-      <InformText>네이버 블로그 리뷰 수: {blogcnt}</InformText>
+      <InformText>네이버 방문 리뷰 수: {visitcnt}개</InformText>
+      <InformText>네이버 블로그 리뷰 수: {blogcnt}개</InformText>
 
       <LinkContainer>
-      <MoreLink href={kakaoMapUrl} target="_blank" rel="noopener noreferrer">
-        카카오맵에서 더보기
-      </MoreLink>
-      <NaverLink href={naverBlogSearchUrl} target="_blank" rel="noopener noreferrer">
-        네이버에서 더보기
-      </NaverLink>
+        <MoreLink href={kakaoMapUrl} target="_blank" rel="noopener noreferrer">
+          카카오맵에서 더보기
+        </MoreLink>
+        <NaverLink href={naverBlogSearchUrl} target="_blank" rel="noopener noreferrer">
+          네이버에서 더보기
+        </NaverLink>
       </LinkContainer>
       <MapContainer id="map" />
     </InformContainer>
   );
 }
+
 
 const InformContainer = styled.div`
   width: 80%;
