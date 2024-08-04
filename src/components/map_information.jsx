@@ -7,6 +7,7 @@ export default function MapInform({ setHospitalId }) {
   const { hospital_name } = useParams();
   const [hospitalInfo, setHospitalInfo] = useState(null);
   const [coordinates, setCoordinates] = useState(null);
+  const kakaoMapUrl = `https://map.kakao.com/link/search/${(hospital_name)}`;
 
   useEffect(() => {
     const fetchHospitalInfo = async () => {
@@ -92,11 +93,13 @@ export default function MapInform({ setHospitalId }) {
   return (
     <InformContainer>
       <Title>{name}</Title>
+      <MoreLink href={kakaoMapUrl} target="_blank" rel="noopener noreferrer"> 자세한 정보 더보기 </MoreLink>
       <InformText>위치: {address}</InformText>
-      <InformText>예약 가능 여부: {reservation ? "가능" : "불가능"}</InformText>
+      <InformText>네이버 예약 가능 여부: {reservation ? "가능" : "불가능"}</InformText>
       <InformText>네이버 방문 리뷰 수: {visitcnt}</InformText>
       <InformText>네이버 블로그 리뷰 수: {blogcnt}</InformText>
       <InformText>산부인과 전문의 수: {maindoctorcnt}</InformText>
+      
       <MapContainer id="map" />
     </InformContainer>
   );
@@ -105,22 +108,52 @@ export default function MapInform({ setHospitalId }) {
 const InformContainer = styled.div`
   width: 80%;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #f0f0f0e7;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  text-align: center;
 `;
 
 const Title = styled.h2`
+  margin-top: 10px;
   margin-bottom: 20px;
+  color: #333;
+  font-size: 40px;
+  font-weight: bold;
 `;
 
 const InformText = styled.p`
   margin: 5px 0;
+  color: #555;
+  font-size: 20px;
+  font-weight: ;
 `;
 
 const MapContainer = styled.div`
-  width: 50%;
-  height: 200px;
+  width: 80%;
+  height: 300px;
   margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
+const MoreLink = styled.a`
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  background-color: #c7c7c7;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 600;
+  &:hover {
+    background-color: rgba(254, 206, 85, 0.84);
+    color: black;
+  }
+`;
