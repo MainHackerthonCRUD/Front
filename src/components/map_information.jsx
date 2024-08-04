@@ -129,7 +129,7 @@ const InformText = styled.p`
   margin: 5px 0;
   color: #555;
   font-size: 20px;
-  font-weight: ;
+  font-weight: 200;
 `;
 
 const MapContainer = styled.div`
