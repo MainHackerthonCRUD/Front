@@ -10,7 +10,7 @@ import { DeleteConfirm } from "./review_delete";
 import { HostpitalName } from "./review_edit";
 import Pagination from "./pagination";
 
-export default function UReviewEle({limit, setPage, page, total}) {
+export default function UReviewEle({limit, setPage, page, total, setTotal, setReviewLength}) {
 
     const [myReviews, setMyReviews] = useState([]);
     const [deletingReviewId, setDeletingReviewId] = useState(null);
@@ -40,7 +40,7 @@ export default function UReviewEle({limit, setPage, page, total}) {
 
     useEffect(() => {
         fetchMyReviews();
-    }, [setPage]);
+    }, [page]);
 
     const handleDelete = (id) => {
         setDeletingReviewId(id);
@@ -96,7 +96,6 @@ export default function UReviewEle({limit, setPage, page, total}) {
               onCancel={handleCancelDelete}
             />
           )}
-            <Pagination total={total} limit={10} page={page} setPage={setPage}/>
         </ReviewElement>  
     ))}
     </>

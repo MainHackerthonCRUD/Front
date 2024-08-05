@@ -6,18 +6,19 @@ import Pagination from "./pagination";
 
 export default function MypageReviews() {
 
-  const [total, setTotal] = useState();
-  const [limit, setLimit] = useState(null);
-  const [page, setPage] = useState();
-  const [reviewlenght, setReviewlenght] = useState(null);
+  const [total, setTotal] = useState(0);
+  const [limit, setLimit] = useState(9);
+  const [page, setPage] = useState(1);
+  const [reviewLength, setReviewLength] = useState(0);
 
   return (
     <MyOuterDiv>
       <h2>내가 쓴 리뷰</h2>
       <ReviewComponentWrapper>
         <MyRevieswWrapper>
-            <UReviewEle limit={limit} setPage={setPage} page={page} total={total}/>
+            <UReviewEle limit={limit} setPage={setPage} page={page} total={total} setTotal={setTotal} setReviewLength={setReviewLength}/>
         </MyRevieswWrapper>
+        <Pagination total={reviewLength} limit={limit} page={page} setPage={setPage} />
     </ReviewComponentWrapper>
     </MyOuterDiv>
   )
