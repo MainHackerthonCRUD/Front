@@ -16,7 +16,11 @@ export default function MypageReviews() {
       <h2>내가 쓴 리뷰</h2>
       <ReviewComponentWrapper>
         <MyRevieswWrapper>
-            <UReviewEle limit={limit} setPage={setPage} page={page} total={total} setTotal={setTotal} setReviewLength={setReviewLength}/>
+            <UReviewEle 
+            limit={limit} 
+            setPage={setPage} page={page} 
+            setTotal={setTotal} total={total}
+            setReviewLength={setReviewLength}/>
         </MyRevieswWrapper>
         <Pagination total={reviewLength} limit={limit} page={page} setPage={setPage} />
     </ReviewComponentWrapper>

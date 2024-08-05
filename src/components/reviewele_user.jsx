@@ -8,7 +8,6 @@ import { MyEditButton } from "./mypage_review_edit";
 import MypageReviewDelete from "./mypage_review_delete";
 import { DeleteConfirm } from "./review_delete";
 import { HostpitalName } from "./review_edit";
-import Pagination from "./pagination";
 
 export default function UReviewEle({limit, setPage, page, total, setTotal, setReviewLength}) {
 
@@ -19,7 +18,6 @@ export default function UReviewEle({limit, setPage, page, total, setTotal, setRe
     let token = cookies.access;
 
     const offset = (page-1)*limit;
-    const [reviewlenght, setReviewlenght] = useState(null);
 
     const fetchMyReviews = async () => {
         try {
@@ -29,8 +27,9 @@ export default function UReviewEle({limit, setPage, page, total, setTotal, setRe
                     'Content-Type': 'application/json'
                 }
             });
-            setReviewlenght((res.data.comments).length);
+            setReviewLength((res.data.comments).length);
             let ReviewData = (res.data.comments).slice(offset, offset+10);
+            setTotal(res.data.comments_count);
             setMyReviews(ReviewData);
             console.log(res.data);
         } catch (error) {
@@ -40,7 +39,7 @@ export default function UReviewEle({limit, setPage, page, total, setTotal, setRe
 
     useEffect(() => {
         fetchMyReviews();
-    }, [page]);
+    }, [page, limit]);
 
     const handleDelete = (id) => {
         setDeletingReviewId(id);
