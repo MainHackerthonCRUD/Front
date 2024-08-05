@@ -8,7 +8,6 @@ export default function Pagination({ total, limit, page, setPage}) {
     const handlePageBtn = (e, i) => {
         setPage(i + 1);
         setBtnActive(e.target.value);
-        console.log(page);
     };
 
     return (

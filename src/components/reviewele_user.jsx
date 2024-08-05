@@ -28,10 +28,11 @@ export default function UReviewEle({limit, setPage, page, total, setTotal, setRe
                 }
             });
             setReviewLength((res.data.comments).length);
-            let ReviewData = (res.data.comments).slice(offset, offset+10);
+            let ReviewData = (res.data.comments).slice(offset, offset+9);
             setTotal(res.data.comments_count);
             setMyReviews(ReviewData);
             console.log(res.data);
+            console.log(offset, offset+9);
         } catch (error) {
             console.error('error', error);
         }
@@ -67,7 +68,7 @@ export default function UReviewEle({limit, setPage, page, total, setTotal, setRe
 
     return (
     <>
-        {myReviews.slice(offset, offset+limit).map((review) => (
+        {myReviews.map((review) => (
             <ReviewElement key={review.id}>
             <PostContent>
             <HostpitalName href={`/hospital/${review.hospital_name}`}>{review.hospital_name}</HostpitalName>
