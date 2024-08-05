@@ -1,14 +1,22 @@
 import styled from "styled-components";
 import { ReviewComponentWrapper } from "./hospital_detail_review";
 import UReviewEle from "./reviewele_user";
+import { useState } from "react";
+import Pagination from "./pagination";
 
 export default function MypageReviews() {
+
+  const [total, setTotal] = useState();
+  const [limit, setLimit] = useState(null);
+  const [page, setPage] = useState();
+  const [reviewlenght, setReviewlenght] = useState(null);
+
   return (
     <MyOuterDiv>
       <h2>내가 쓴 리뷰</h2>
       <ReviewComponentWrapper>
         <MyRevieswWrapper>
-            <UReviewEle/>
+            <UReviewEle limit={limit} setPage={setPage} page={page} total={total}/>
         </MyRevieswWrapper>
     </ReviewComponentWrapper>
     </MyOuterDiv>
