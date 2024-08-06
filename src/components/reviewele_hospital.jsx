@@ -6,8 +6,9 @@ import { useCookies } from 'react-cookie';
 import DeleteButton, {DeleteConfirm} from "./review_delete";
 import { EditButton } from "./review_edit";
 import GoBackButton from "./gobackbutton";
+import { Paging } from "./mypage_reviews";
 
-export default function HReviewEle({ hospitalId, onReviewStatusChange }) {
+export default function HReviewEle({ hospitalId, onReviewStatusChange, limit, setPage, page, total, setTotal, setReviewLength }) {
 
     const [reviews, setReviews] = useState([]);
     const [deletingReviewId, setDeletingReviewId] = useState(null);
@@ -16,12 +17,17 @@ export default function HReviewEle({ hospitalId, onReviewStatusChange }) {
     let currentUserNickname = cookies.nickname;
     let token = cookies.access;
 
+    const offset = (page-1)*limit;
+
     const getReviews = async () => {
         if (!hospitalId) return;
         try {
             const res = await api.get(`board/${hospitalId}/commentget/`)
-            setReviews(res.data);
             onReviewStatusChange(res.data.length === 0);
+            let ReviewData = (res.data).slice(offset, offset+9);
+            setReviews(ReviewData);
+            setTotal((res.data).length);
+            setReviewLength((res.data).length);
         } catch (error) {
             console.error('error', error);
         }
@@ -30,7 +36,7 @@ export default function HReviewEle({ hospitalId, onReviewStatusChange }) {
     useEffect(() => {
         console.log("hospitalId changed:", hospitalId);
         getReviews();
-    }, [hospitalId]);
+    }, [hospitalId, page, limit]);
 
     const handleDelete = (id) => {
         setDeletingReviewId(id);

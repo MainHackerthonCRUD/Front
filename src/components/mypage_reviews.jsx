@@ -1,16 +1,31 @@
 import styled from "styled-components";
 import { ReviewComponentWrapper } from "./hospital_detail_review";
 import UReviewEle from "./reviewele_user";
+import { useState } from "react";
+import Pagination from "./pagination";
 
 export default function MypageReviews() {
+
+  const [total, setTotal] = useState(0);
+  const [limit, setLimit] = useState(9);
+  const [page, setPage] = useState(1);
+  const [reviewLength, setReviewLength] = useState(0);
+
   return (
     <MyOuterDiv>
       <h2>내가 쓴 리뷰</h2>
       <ReviewComponentWrapper>
         <MyRevieswWrapper>
-            <UReviewEle/>
+            <UReviewEle 
+            limit={limit} 
+            setPage={setPage} page={page} 
+            setTotal={setTotal} total={total}
+            setReviewLength={setReviewLength}/>
         </MyRevieswWrapper>
     </ReviewComponentWrapper>
+    <Paging>
+      <Pagination total={reviewLength} limit={limit} page={page} setPage={setPage} />
+    </Paging>
     </MyOuterDiv>
   )
 }
@@ -25,10 +40,15 @@ const MyOuterDiv = styled.div`
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 
   h2 {
     padding-top: 20px;
   }
+`;
+
+export const Paging = styled.div`
+  margin-bottom: 15px;;
 `;
 
 const MyRevieswWrapper = styled.div`

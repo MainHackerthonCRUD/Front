@@ -9,13 +9,15 @@ import MypageReviewDelete from "./mypage_review_delete";
 import { DeleteConfirm } from "./review_delete";
 import { HostpitalName } from "./review_edit";
 
-export default function UReviewEle() {
+export default function UReviewEle({limit, setPage, page, total, setTotal, setReviewLength}) {
 
     const [myReviews, setMyReviews] = useState([]);
     const [deletingReviewId, setDeletingReviewId] = useState(null);
     const [cookies, setCookie] = useCookies(['access', 'nickname']);
     let user = cookies.nickname;
     let token = cookies.access;
+
+    const offset = (page-1)*limit;
 
     const fetchMyReviews = async () => {
         try {
@@ -25,8 +27,12 @@ export default function UReviewEle() {
                     'Content-Type': 'application/json'
                 }
             });
-            setMyReviews(res.data.comments);
+            setReviewLength((res.data.comments).length);
+            let ReviewData = (res.data.comments).slice(offset, offset+9);
+            setTotal(res.data.comments_count);
+            setMyReviews(ReviewData);
             console.log(res.data);
+            console.log(offset, offset+9);
         } catch (error) {
             console.error('error', error);
         }
@@ -34,7 +40,7 @@ export default function UReviewEle() {
 
     useEffect(() => {
         fetchMyReviews();
-    }, []);
+    }, [page, limit]);
 
     const handleDelete = (id) => {
         setDeletingReviewId(id);
