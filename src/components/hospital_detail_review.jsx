@@ -3,6 +3,8 @@ import HReviewEle from "./reviewele_hospital";
 import { useState } from "react";
 import { NoReview } from "./reviewele_hospital";
 import GoBackButton from "./gobackbutton";
+import Pagination from "./pagination";
+import { Paging } from "./mypage_reviews";
 
 export default function HospitalDetailReview({ hospitalId }) {
 
@@ -12,16 +14,28 @@ export default function HospitalDetailReview({ hospitalId }) {
     setNoReviews(isEmpty);
   };
 
+  // 페이지네이션
+  const [total, setTotal] = useState(0);
+  const [limit, setLimit] = useState(9);
+  const [page, setPage] = useState(1);
+  const [reviewLength, setReviewLength] = useState(0);
+
   return (
     <ComponentOuterDiv>
       <ReviewComponentWrapper>
         {!noReviews && (
-          <>
+          <YesReview>
             <h2>리뷰 목록</h2>
             <ReviewWrapper>
-              <HReviewEle hospitalId={hospitalId} onReviewStatusChange={handleReviewStatusChange} />
+              <HReviewEle hospitalId={hospitalId} onReviewStatusChange={handleReviewStatusChange} 
+                          limit={limit} 
+                          setPage={setPage} page={page} 
+                          setTotal={setTotal} total={total}
+                          setReviewLength={setReviewLength}
+              />
             </ReviewWrapper>
-          </>
+            <Pagination total={reviewLength} limit={limit} page={page} setPage={setPage} />
+          </YesReview>
         )}
         {noReviews && (
           <>
@@ -47,7 +61,15 @@ export const ComponentOuterDiv = styled.div`
   align-items: center;
   min-height: 60vh;
   border-radius: 10px;
-  margin: 0 auto;
+  margin-bottom: 20px;
+`;
+
+const YesReview = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 `;
 
 export const ReviewComponentWrapper = styled.div`
@@ -56,7 +78,7 @@ export const ReviewComponentWrapper = styled.div`
     justify-content: center; 
     align-items: center;
     gap: 20px;
-    padding: 20px 40px 40px 40px;
+    padding: 20px 40px 15px 40px;
     height: auto;
 `;
 

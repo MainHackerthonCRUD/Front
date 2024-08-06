@@ -23,7 +23,9 @@ export default function MypageReviews() {
             setReviewLength={setReviewLength}/>
         </MyRevieswWrapper>
     </ReviewComponentWrapper>
-    <Pagination total={reviewLength} limit={limit} page={page} setPage={setPage} />
+    <Paging>
+      <Pagination total={reviewLength} limit={limit} page={page} setPage={setPage} />
+    </Paging>
     </MyOuterDiv>
   )
 }
@@ -43,6 +45,10 @@ const MyOuterDiv = styled.div`
   h2 {
     padding-top: 20px;
   }
+`;
+
+export const Paging = styled.div`
+  margin-bottom: 15px;;
 `;
 
 const MyRevieswWrapper = styled.div`
