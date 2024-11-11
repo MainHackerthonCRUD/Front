@@ -24,7 +24,7 @@ export default function MapDetail() {
   }, [hospital_name]);
 
   const searchHospital = async (keyword) => {
-    const REST_API_KEY = '4d8cfa3685dfa169c16db2a1ac1349aa'; // 카카오 REST API 키
+    const REST_API_KEY = '4'; // 카카오 REST API 키
     const url = `https://dapi.kakao.com/v2/local/search/address.json`;
     const headers = { Authorization: `KakaoAK ${REST_API_KEY}` };
 
